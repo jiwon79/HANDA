@@ -5,14 +5,11 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Landing PAGE',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('landing paege'),
-        ),
-        body: Container()
-      )
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('landing paege'),
+      ),
+      body: Container()
     );
   }
 }
