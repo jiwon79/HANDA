@@ -6,10 +6,14 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('landing paege'),
-      ),
-      body: Container()
-    );
+        appBar: AppBar(
+          title: Text('landing paege'),
+        ),
+        body: TextButton(
+          child: Text('navigation'),
+          onPressed: () {
+            Navigator.pushNamed(context, '/landing/login');
+          },
+        ));
   }
 }
