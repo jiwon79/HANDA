@@ -29,7 +29,7 @@ class LandingPage extends StatelessWidget {
           TextButton(
             child: Text('회원가입'),
             onPressed: () {
-              Navigator.pushNamed(context, '/landing/login');
+              Navigator.pushNamed(context, '/landing/register');
             },
           )
         ],
