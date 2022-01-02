@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo/screens/landing/landing.dart';
 import 'package:flutter_todo/screens/landing/login.dart';
 import 'package:flutter_todo/screens/landing/register.dart';
+import 'package:flutter_todo/screens/todo/todo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         '/landing': (context) => LandingPage(),
         '/landing/login': (context) => LoginPage(),
         '/landing/register': (context) => RegisterPage(),
+        '/todo': (context) => TodoPage(),
       },
     );
   }

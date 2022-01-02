@@ -9,7 +9,16 @@ class LoginPage extends StatelessWidget {
         appBar: AppBar(
           title: Text('login page'),
         ),
-        body: Container()
+        body: Column(
+          children: [
+            TextButton(
+              child: Text('로그인'),
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(context, '/todo', (route) => false);
+              },
+            )
+          ],
+        )
       );
   }
 }
