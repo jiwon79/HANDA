@@ -16,8 +16,10 @@ class LandingPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('handa'),
-          Text('완벽한 실천을 위한 완벽한 플래너'),
+          Center(
+            child: Text('handa'),
+          ),
+          Text('완벽한 실천을 위한 \n완벽한 플래너'),
           TextButton(
             child: Text('로그인'),
             onPressed: () {
