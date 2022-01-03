@@ -8,6 +8,14 @@ class MainNavigator extends StatefulWidget {
 }
 
 class _MainNavigatorState extends State<MainNavigator> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,21 +26,24 @@ class _MainNavigatorState extends State<MainNavigator> {
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home, color: Colors.black),
             label: 'home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
+            icon: Icon(Icons.calendar_today, color: Colors.black,),
             label: 'calendar',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline_rounded),
+            icon: Icon(Icons.person_outline_rounded, color: Colors.black,),
             label: 'ccc',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_search),
+            icon: Icon(Icons.person_search, color: Colors.black,),
             label: 'ddd',
           ),
         ],
