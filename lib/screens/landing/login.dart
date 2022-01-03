@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
             TextButton(
               child: Text('로그인'),
               onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(context, '/todo', (route) => false);
+                Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
               },
             )
           ],
