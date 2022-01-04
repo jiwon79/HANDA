@@ -4,6 +4,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_todo/provider/todo.dart';
 
 import 'package:flutter_todo/widgets/todo/calendar_header.dart';
+import 'package:flutter_todo/widgets/todo/calendar_footer.dart';
 
 class TodoCalendar extends StatefulWidget {
   const TodoCalendar({Key? key}) : super(key: key);
@@ -39,8 +40,9 @@ class _TodoCalendarState extends State<TodoCalendar> {
           focusedDay: context.watch<Todo>().focusedDay,
           calendarFormat: context.watch<Todo>().calendarFormat,
           currentDay: DateTime.now().add(Duration(hours: 9)),
-          // headerVisible: false,
+          headerVisible: false,
         ),
+        CalendarFotter(),
       ],
     );
   }
