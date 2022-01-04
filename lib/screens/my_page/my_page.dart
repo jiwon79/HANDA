@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class TodoPage extends StatelessWidget {
-  const TodoPage({Key? key}) : super(key: key);
+class MyPage extends StatelessWidget {
+  const MyPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('todo'),
+      child: Text('MyPage'),
     );
   }
 }

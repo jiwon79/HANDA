@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/screens/todo/todo.dart';
+import 'package:flutter_todo/screens/feed/feed.dart';
+import 'package:flutter_todo/screens/my_page/my_page.dart';
+import 'package:flutter_todo/screens/group/group.dart';
+
 
 class MainNavigator extends StatefulWidget {
   const MainNavigator({Key? key}) : super(key: key);
@@ -11,10 +16,10 @@ class _MainNavigatorState extends State<MainNavigator> {
   int _selectedIndex = 0;
 
   final tabs = [
-    Center(child: Text('aaa')),
-    Center(child: Text('bbb')),
-    Center(child: Text('ccc')),
-    Center(child: Text('ddd')),
+    FeedPage(),
+    TodoPage(),
+    MyPage(),
+    GroupPage(),
   ];
 
   void _onItemTapped(int index) {

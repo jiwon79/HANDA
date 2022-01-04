@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class TodoPage extends StatelessWidget {
-  const TodoPage({Key? key}) : super(key: key);
+class GroupPage extends StatelessWidget {
+  const GroupPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('todo'),
+      child: Text('group'),
     );
   }
 }
