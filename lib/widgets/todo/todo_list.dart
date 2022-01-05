@@ -10,22 +10,23 @@ class TodoList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<TodoData>(builder: (context, todoData, child) {
       return Expanded(
-          child: ListView.builder(
-        itemBuilder: (context, index) {
-          final todo = todoData.todos[index];
-          return TodoItem(
-            todoName: todo.name,
-            isChecked: todo.isDone,
-            checkboxCallback: (bool checkboxState) {
-              todoData.updateTodo(todo);
-            },
-            longPressCallback: () {
-              todoData.deleteTodo(todo);
-            }
-          );
-        },
-        itemCount: todoData.todoCount,
-      ));
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            final todo = todoData.todos[index];
+            return TodoItem(
+              todoName: todo.name,
+              isChecked: todo.isDone,
+              checkboxCallback: (bool checkboxState) {
+                todoData.updateTodo(todo);
+              },
+              longPressCallback: () {
+                todoData.deleteTodo(todo);
+              }
+            );
+          },
+          itemCount: todoData.todoCount,
+        )
+      );
     });
   }
 }
