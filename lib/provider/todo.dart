@@ -11,9 +11,11 @@ class TodoData with ChangeNotifier {
   CalendarFormat get calendarFormat => _calendarFormat;
 
   List<Todo> _todos = [
-    Todo(name: '으아아아'),
-    Todo(name: '아으으으'),
-    Todo(name: '으아으아'),
+    Todo(name: '자기'),
+    Todo(name: '잠자기'),
+    Todo(name: '낮잠자기'),
+    Todo(name: '저녘에 잠자리에 들기'),
+    Todo(name: '잠 푹 자기'),
   ];
 
   List<Todo> get todos => _todos;
