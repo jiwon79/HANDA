@@ -21,24 +21,24 @@ class _TodoCalendarState extends State<TodoCalendar> {
         CalendarHeader(),
         TableCalendar(
           selectedDayPredicate: (day) {
-            return isSameDay(context.watch<Todo>().selectedDay, day);
+            return isSameDay(context.watch<TodoData>().selectedDay, day);
           },
           onDaySelected: (selectedDay, focusedDay) {
-            context.read<Todo>().changeSelectedDay(selectedDay);
-            context.read<Todo>().changeFocusedDay(focusedDay);
+            context.read<TodoData>().changeSelectedDay(selectedDay);
+            context.read<TodoData>().changeFocusedDay(focusedDay);
           },
           onPageChanged: (focusedDay) {
-            context.read<Todo>().changeFocusedDay(focusedDay);
+            context.read<TodoData>().changeFocusedDay(focusedDay);
           },
           onFormatChanged: (format) {
-            if (context.watch<Todo>().calendarFormat != format) {
-              context.read<Todo>().changeCalendarFormat(format);
+            if (context.watch<TodoData>().calendarFormat != format) {
+              context.read<TodoData>().changeCalendarFormat(format);
             }
           },
           firstDay: DateTime.utc(2022, 1, 1),
           lastDay: DateTime.utc(2022, 4, 1),
-          focusedDay: context.watch<Todo>().focusedDay,
-          calendarFormat: context.watch<Todo>().calendarFormat,
+          focusedDay: context.watch<TodoData>().focusedDay,
+          calendarFormat: context.watch<TodoData>().calendarFormat,
           currentDay: DateTime.now().add(Duration(hours: 9)),
           headerVisible: false,
         ),

@@ -18,7 +18,7 @@ class _CalendarHeaderState extends State<CalendarHeader> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(DateFormat('yyyy년 MM월').format(context.watch<Todo>().selectedDay)),
+        Text(DateFormat('yyyy년 MM월').format(context.watch<TodoData>().selectedDay)),
         Icon(Icons.health_and_safety),
         Text('32'),
         Icon(Icons.check_box),
@@ -32,7 +32,7 @@ class _CalendarHeaderState extends State<CalendarHeader> {
             );
           }).toList(),
           onChanged: (value) {
-            context.read<Todo>().changeCalendarFormat(value);
+            context.read<TodoData>().changeCalendarFormat(value);
             setState(() {
               _selectedValue = value!;
             });

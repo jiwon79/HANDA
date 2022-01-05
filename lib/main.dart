@@ -10,7 +10,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => Todo()),
+        ChangeNotifierProvider(create: (_) => TodoData()),
       ],
       child: MyApp(),
     )
