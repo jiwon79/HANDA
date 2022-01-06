@@ -14,16 +14,18 @@ class AuthApi {
     late RegisterResponse registerResponse;
     try {
       response = await http.postRequest("/auth/register", data);
+      print(response);
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         registerResponse = RegisterResponse.fromJson(response.data);
         return registerResponse;
       } else {
-        print("There is some problem status code not 200");
-        return null;
+        print("There is some problem status code not 201");
+        return response.statusCode;
       }
-    } on Exception catch (e) {
-      print(e);
+    } on DioError catch (e) {
+      print(e.response);
+      print(e.response!.statusCode);
     }
   }
 }

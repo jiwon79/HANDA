@@ -33,16 +33,53 @@ class _RegisterPageState extends State<RegisterPage> {
   RegisterResponse? registerResponse;
   bool isLoading = false;
 
-  void register () {
+  void register () async {
     var data = {
       'username': _nameController.text,
       'email': _mailController.text,
       'nickname': _idController.text,
       'password': _pwController.text,
     };
-    print(data);
-    var response = AuthApi().registerApi(data);
-    print(response);
+    var response = await AuthApi().registerApi(data);
+
+    if (response == 400) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('회원가입 오류'),
+            content: Text('아이디 혹은 이메일이 이미 존재합니다.'),
+            actions: [
+              TextButton(
+                child: Text("확인"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          );
+        }
+      );
+    } else {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Text('회원가입이 되었습니다.'),
+              actions: [
+                TextButton(
+                  child: Text("확인"),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/landing/login');
+                  },
+                )
+              ],
+            );
+          }
+      );
+    }
   }
 
 
