@@ -41,4 +41,16 @@ class HttpService {
 
     return response;
   }
+
+  Future<Response> postRequest(String endPoint, Map<String, dynamic> data) async {
+    Response response;
+    try {
+      response = await _dio.post(endPoint, data: data);
+    } on DioError catch (e) {
+      print(e.message);
+      throw Exception(e.message);
+    }
+
+    return response;
+  }
 }
