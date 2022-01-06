@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/models/auth_model.dart';
+import 'package:flutter_todo/services/auth_api.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -8,6 +10,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _mailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
@@ -27,6 +30,22 @@ class _RegisterPageState extends State<RegisterPage> {
     });
   }
 
+  RegisterResponse? registerResponse;
+  bool isLoading = false;
+
+  void register () {
+    var data = {
+      'username': _nameController.text,
+      'email': _mailController.text,
+      'nickname': _idController.text,
+      'password': _pwController.text,
+    };
+    print(data);
+    var response = AuthApi().registerApi(data);
+    print(response);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +55,12 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         body: Column(
           children: [
+            TextField(
+              decoration: InputDecoration(
+                  labelText: '이름'
+              ),
+              controller: _nameController,
+            ),
             TextField(
               decoration: InputDecoration(
                   labelText: '아이디'
@@ -64,10 +89,11 @@ class _RegisterPageState extends State<RegisterPage> {
               onChanged: checkIsSamePw,
             ),
             Text(_isCheckedPw ? '비밀번호가 일치' : '비밀번호가 불일치'),
+            // Text(isLoading.toString()),
             OutlinedButton(
-              child: Text('로그인'),
+              child: Text('회원가입'),
               onPressed: () {
-                print(_idController.text);
+                register();
               },
             )
           ],
