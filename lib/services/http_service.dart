@@ -5,10 +5,12 @@ class HttpService {
   late Dio _dio;
 
   HttpService() {
-    // _dio = Dio();
-    _dio = Dio(BaseOptions(
-      baseUrl: _baseUrl
-    ));
+    var options = BaseOptions(
+      baseUrl: _baseUrl,
+      connectTimeout: 5000,
+      receiveTimeout: 3000,
+    );
+    _dio = Dio(options);
 
     initializeInterceptors();
   }
@@ -16,7 +18,6 @@ class HttpService {
   initializeInterceptors() {
     _dio.interceptors.add(InterceptorsWrapper(
       onError: (error, errorInterceptorHandler){
-        print(error.message);
         return errorInterceptorHandler.next(error);
       },
       onRequest: (request, requestInterceptorHandler) {
@@ -24,7 +25,7 @@ class HttpService {
         return requestInterceptorHandler.next(request);
       },
       onResponse: (response, responseInterceptorHandler) {
-        print('${response.statusCode} ${response.statusCode} ${response.data}');
+        print('${response.statusCode} ${response.data}');
         return responseInterceptorHandler.next(response);
       }
     ));
@@ -42,13 +43,13 @@ class HttpService {
     return response;
   }
 
-  Future<Response> postRequest(String endPoint, Map<String, dynamic> data) async {
+  Future postRequest(String endPoint, Map<String, dynamic> data) async {
     Response response;
     try {
       response = await _dio.post(endPoint, data: data);
+      print(response);
     } on DioError catch (e) {
-      print(e.message);
-      throw Exception(e.message);
+      return e.response;
     }
 
     return response;
