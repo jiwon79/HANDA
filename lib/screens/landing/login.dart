@@ -1,24 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/services/auth_api.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _idController = TextEditingController();
+  final TextEditingController _pwController = TextEditingController();
+
+  void login() async {
+      var data = {
+        'username': _idController.text,
+        'password': _pwController.text,
+      };
+
+      var response = await AuthApi().loginApi(data);
+      if (response.statusCode == 200) {
+
+      } else if (response.statusCode == 401) {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('로그인 오류'),
+                content: Text('아이디 혹은 비밀번호가 잘못되었습니다.'),
+                actions: [
+                  TextButton(
+                    child: Text("확인"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  )
+                ],
+              );
+            }
+        );
+      }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('login page'),
-      ),
-      body: Column(
-        children: [
-          TextButton(
-            child: Text('로그인'),
-            onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
-            },
-          )
-        ],
-      )
+        appBar: AppBar(
+          title: Text('login page'),
+        ),
+        body: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                  labelText: '아이디'
+              ),
+              controller: _idController,
+            ),
+            TextField(
+              decoration: InputDecoration(
+                  labelText: '비밀번호'
+              ),
+              controller: _pwController,
+            ),
+            TextButton(
+              child: Text('로그인'),
+              onPressed: () {
+                login();
+                // Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
+              },
+            )
+          ],
+        )
     );
   }
 }

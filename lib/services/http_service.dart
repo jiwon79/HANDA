@@ -9,6 +9,7 @@ class HttpService {
       baseUrl: _baseUrl,
       connectTimeout: 5000,
       receiveTimeout: 3000,
+      contentType: 'application/x-www-form-urlencoded',
     );
     _dio = Dio(options);
 
@@ -21,7 +22,7 @@ class HttpService {
         return errorInterceptorHandler.next(error);
       },
       onRequest: (request, requestInterceptorHandler) {
-        print("${request.method} | ${request.path}");
+        print("${request.method} | ${request.path} | ${request.data}");
         return requestInterceptorHandler.next(request);
       },
       onResponse: (response, responseInterceptorHandler) {
@@ -45,8 +46,10 @@ class HttpService {
   Future postRequest(String endPoint, Map<String, dynamic> data) async {
     Response response;
     try {
-      response = await _dio.post(endPoint, data: data);
-      print(response);
+      response = await _dio.post(
+          endPoint,
+          data: data,
+      );
     } on DioError catch (e) {
       return e.response;
     }
