@@ -20,18 +20,6 @@ class TodoData with ChangeNotifier {
 
   List<Todo> get todos => _todos;
 
-  String _access_token = "";
-  String _token_type = "";
-
-  String get access_token => _access_token;
-  String get token_type => _token_type;
-
-  void setToken(String token, String type) {
-    _access_token = token;
-    _token_type = type;
-    notifyListeners();
-  }
-
   int get todoCount {
     return _todos.length;
   }
