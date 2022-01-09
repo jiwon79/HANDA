@@ -38,7 +38,7 @@ class HttpService {
   Future<Response> getRequest(String endPoint) async {
     final storage = FlutterSecureStorage();
     String? token = await storage.read(key: "token");
-    _dio.options.headers = {HttpHeaders.authorizationHeader: token};
+    _dio.options.headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
 
     Response response;
     try {
@@ -53,7 +53,7 @@ class HttpService {
   Future postRequest(String endPoint, Map<String, dynamic> data) async {
     final storage = FlutterSecureStorage();
     String? token = await storage.read(key: "token");
-    _dio.options.headers = {HttpHeaders.authorizationHeader: token};
+    _dio.options.headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
 
     Response response;
     try {

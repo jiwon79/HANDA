@@ -69,7 +69,6 @@ class _LoginPageState extends State<LoginPage> {
               child: Text('로그인'),
               onPressed: () {
                 login();
-                // Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
               },
             )
           ],
