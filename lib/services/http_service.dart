@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class HttpService {
   String _baseUrl = 'https://service-handa.herokuapp.com/';
@@ -33,6 +36,10 @@ class HttpService {
   }
 
   Future<Response> getRequest(String endPoint) async {
+    final storage = FlutterSecureStorage();
+    String? token = await storage.read(key: "token");
+    _dio.options.headers = {HttpHeaders.authorizationHeader: token};
+
     Response response;
     try {
       response = await _dio.get(endPoint);
@@ -44,6 +51,10 @@ class HttpService {
   }
 
   Future postRequest(String endPoint, Map<String, dynamic> data) async {
+    final storage = FlutterSecureStorage();
+    String? token = await storage.read(key: "token");
+    _dio.options.headers = {HttpHeaders.authorizationHeader: token};
+
     Response response;
     try {
       response = await _dio.post(

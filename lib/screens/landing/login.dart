@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_todo/services/auth_api.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,7 +21,9 @@ class _LoginPageState extends State<LoginPage> {
 
       var response = await AuthApi().loginApi(data);
       if (response.statusCode == 200) {
-
+        final storage = FlutterSecureStorage();
+        await storage.write(key: 'token', value: response.data.access_token);
+        Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
       } else if (response.statusCode == 401) {
         showDialog(
             context: context,
