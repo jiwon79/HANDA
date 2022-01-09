@@ -24,13 +24,31 @@ class _LoginPageState extends State<LoginPage> {
         final storage = FlutterSecureStorage();
         await storage.write(key: 'token', value: response.data.access_token);
         Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
+      } else if (response.statusCode == 404) {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('로그인 오류'),
+                content: Text('아이디가 잘못되었습니다.'),
+                actions: [
+                  TextButton(
+                    child: Text("확인"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  )
+                ],
+              );
+            }
+        );
       } else if (response.statusCode == 401) {
         showDialog(
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
                 title: Text('로그인 오류'),
-                content: Text('아이디 혹은 비밀번호가 잘못되었습니다.'),
+                content: Text('비밀번호가 잘못되었습니다.'),
                 actions: [
                   TextButton(
                     child: Text("확인"),
