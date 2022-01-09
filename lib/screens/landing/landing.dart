@@ -20,7 +20,16 @@ class LandingPage extends StatelessWidget {
             Center(
               child: Text('handa'),
             ),
-            Text('완벽한 실천을 위한 \n완벽한 플래너'),
+            Text(
+              '완벽한 실천을 위한 \n완벽한 플래너',
+              style: TextStyle(
+                fontSize: 30,
+                // fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontFamily: 'noto',
+                fontWeight: FontWeight.w700,
+              ),
+            ),
             TextButton(
               child: Text('로그인'),
               onPressed: () {
