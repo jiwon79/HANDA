@@ -28,7 +28,7 @@ class _TodoPageState extends State<TodoPage> {
               getData();
             },
             child: Text('버튼')
-        )
+        ),
       ],
     );
   }
