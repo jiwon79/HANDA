@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/models/todo_model.dart';
 
 class TodoData with ChangeNotifier {
   List<Todo> _todos = [
-    Todo(name: '자기'),
-    Todo(name: '잠자기'),
-    Todo(name: '낮잠자기'),
-    Todo(name: '저녘에 잠자리에 들기'),
-    Todo(name: '잠 푹 자기'),
+    Todo(name: '자기', isDone: false),
+    Todo(name: '잠자기', isDone: false),
+    Todo(name: '낮잠자기', isDone: false),
+    Todo(name: '저녘에 잠자리에 들기', isDone: false),
+    Todo(name: '잠 푹 자기', isDone: false),
   ];
 
   List<Todo> get todos => _todos;
@@ -16,7 +17,7 @@ class TodoData with ChangeNotifier {
   }
 
   void addTodo(String newTodoName) {
-    _todos.add(Todo(name: newTodoName));
+    _todos.add(Todo(name: newTodoName, isDone: false));
     notifyListeners();
   }
 
@@ -28,16 +29,5 @@ class TodoData with ChangeNotifier {
   void deleteTodo(Todo todo) {
     _todos.remove(todo);
     notifyListeners();
-  }
-}
-
-class Todo {
-  final String name;
-  bool isDone;
-
-  Todo({this.name = 'aa', this.isDone = false});
-
-  void toggleDone() {
-    isDone = !isDone;
   }
 }

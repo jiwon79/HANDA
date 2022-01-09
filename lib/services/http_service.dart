@@ -10,8 +10,8 @@ class HttpService {
   HttpService() {
     var options = BaseOptions(
       baseUrl: _baseUrl,
-      connectTimeout: 5000,
-      receiveTimeout: 3000,
+      // connectTimeout: 5000,
+      // receiveTimeout: 3000,
       contentType: 'application/x-www-form-urlencoded',
     );
     _dio = Dio(options);
