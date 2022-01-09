@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:flutter_todo/provider/calendar.dart';
 import 'package:flutter_todo/provider/todo.dart';
+
 import 'package:flutter_todo/screens/landing/landing.dart';
 import 'package:flutter_todo/screens/landing/login.dart';
 import 'package:flutter_todo/screens/landing/register.dart';
@@ -11,6 +14,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => TodoData()),
+        ChangeNotifierProvider(create: (_) => CalendarData()),
       ],
       child: MyApp(),
     )

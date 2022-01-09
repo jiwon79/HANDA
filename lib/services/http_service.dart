@@ -57,10 +57,7 @@ class HttpService {
 
     Response response;
     try {
-      response = await _dio.post(
-          endPoint,
-          data: data,
-      );
+      response = await _dio.post(endPoint, data: data);
     } on DioError catch (e) {
       return e.response;
     }
