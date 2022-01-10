@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo/services/user_api.dart';
 import 'package:flutter_todo/widgets/todo/calendar.dart';
 import 'package:flutter_todo/widgets/todo/todo_list.dart';
+import 'package:flutter_todo/provider/todo.dart';
+import 'package:provider/provider.dart';
 
 class TodoPage extends StatefulWidget {
   const TodoPage({Key? key}) : super(key: key);
@@ -23,12 +25,14 @@ class _TodoPageState extends State<TodoPage> {
         Text('나의 To Do List'),
         TodoCalendar(),
         TodoList(),
-        TextButton(
+        Consumer<TodoData>(builder: (context, todoData, child) {
+          return TextButton(
             onPressed: () {
-              getData();
+              todoData.addTodo();
             },
-            child: Text('버튼')
-        ),
+            child: Text('할일 추가'),
+          );
+        }),
       ],
     );
   }
