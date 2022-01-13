@@ -16,11 +16,15 @@ class TodoList extends StatelessWidget {
             return TodoItem(
               todoName: todo.name,
               isChecked: todo.isDone,
+              isEditing: todo.isEditing,
               checkboxCallback: (bool checkboxState) {
                 todoData.updateTodo(todo);
               },
               longPressCallback: () {
                 todoData.deleteTodo(todo);
+              },
+              editedCallback: (String updateName) {
+                todoData.updateTodoName(todo, updateName);
               }
             );
           },

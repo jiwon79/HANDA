@@ -24,7 +24,6 @@ class _TodoPageState extends State<TodoPage> {
       children: [
         Text('나의 To Do List'),
         TodoCalendar(),
-        TodoList(),
         Consumer<TodoData>(builder: (context, todoData, child) {
           return TextButton(
             onPressed: () {
@@ -33,6 +32,7 @@ class _TodoPageState extends State<TodoPage> {
             child: Text('할일 추가'),
           );
         }),
+        TodoList(),
       ],
     );
   }
