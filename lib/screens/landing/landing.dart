@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -19,7 +20,11 @@ class LandingPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Center(
-              child: Text('handa'),
+              child: SvgPicture.asset(
+                'assets/images/logo.svg',
+                height: 25,
+                color: Colors.white,
+              )
             ),
             Container(
               margin: EdgeInsets.fromLTRB(0, 200, 0, 0),
