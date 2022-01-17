@@ -4,7 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class HttpService {
-  String _baseUrl = 'https://service-handa.herokuapp.com/';
+  // String _baseUrl = 'https://service-handa.herokuapp.com/';
+  String _baseUrl = 'https://dev-handa.loca.lt/';
   late Dio _dio;
 
   HttpService() {
@@ -53,7 +54,10 @@ class HttpService {
   Future postRequest(String endPoint, Map<String, dynamic> data) async {
     final storage = FlutterSecureStorage();
     String? token = await storage.read(key: "token");
-    _dio.options.headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
+    _dio.options.headers = {
+      HttpHeaders.authorizationHeader: "Bearer $token",
+      // HttpHeaders.contentTypeHeader: 'application/x-www-form-urlencoded',
+    };
 
     Response response;
     try {
