@@ -12,7 +12,7 @@ class HttpService {
       baseUrl: _baseUrl,
       // connectTimeout: 5000,
       // receiveTimeout: 3000,
-      contentType: 'application/x-www-form-urlencoded',
+      // contentType: 'application/x-www-form-urlencoded',
     );
     _dio = Dio(options);
 
@@ -59,6 +59,8 @@ class HttpService {
     try {
       response = await _dio.post(endPoint, data: data);
     } on DioError catch (e) {
+      print(e.message);
+      print(e.response);
       return e.response;
     }
 
