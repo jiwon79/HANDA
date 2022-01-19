@@ -66,6 +66,8 @@ class _TodoItemState extends State<TodoItem> {
                         children: <Widget>[
                           TextButton(
                               onPressed: () {
+                                Navigator.pop(context);
+                                widget.editedCallback(widget.todoName);
                               },
                               child: Column(
                                 children: [

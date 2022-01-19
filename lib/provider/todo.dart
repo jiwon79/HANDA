@@ -3,11 +3,11 @@ import 'package:flutter_todo/models/todo_model.dart';
 
 class TodoData with ChangeNotifier {
   List<Todo> _todos = [
-    Todo(name: '자기', isDone: false, isEditing: true),
-    Todo(name: '잠자기', isDone: false, isEditing: false),
-    Todo(name: '낮잠자기', isDone: false, isEditing: false),
-    Todo(name: '저녘에 잠자리에 들기', isDone: false, isEditing: false),
-    Todo(name: '잠 푹 자기', isDone: false, isEditing: false),
+    Todo(name: '자기', isDone: false),
+    Todo(name: '잠자기', isDone: false),
+    Todo(name: '낮잠자기', isDone: false),
+    Todo(name: '저녘에 잠자리에 들기', isDone: false),
+    Todo(name: '잠 푹 자기', isDone: false),
   ];
 
   List<Todo> get todos => _todos;
