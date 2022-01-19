@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class HttpService {
-  // String _baseUrl = 'https://service-handa.herokuapp.com/';
-  String _baseUrl = 'https://dev-handa.loca.lt/';
+  String _baseUrl = 'https://service-handa.herokuapp.com/';
+  // String _baseUrl = 'https://dev-handa.loca.lt/';
   late Dio _dio;
 
   HttpService() {
