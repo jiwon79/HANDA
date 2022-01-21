@@ -7,7 +7,7 @@ class TodoItem extends StatefulWidget {
         required this.isChecked,
         required this.isEditing,
         required this.checkboxCallback,
-        required this.longPressCallback,
+        required this.deleteCallback,
         required this.editedCallback,
       })
       : super(key: key);
@@ -16,7 +16,7 @@ class TodoItem extends StatefulWidget {
   final bool isChecked;
   final bool isEditing;
   final Function checkboxCallback;
-  final Function longPressCallback;
+  final Function deleteCallback;
   final Function editedCallback;
 
   @override
@@ -75,7 +75,18 @@ class _TodoItemState extends State<TodoItem> {
                                   Text('To Do 수정하기'),
                                 ],
                               )
-                          )
+                          ),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                widget.deleteCallback();
+                              }, 
+                              child: Column(
+                                children: [
+                                  Icon(Icons.clear),
+                                  Text('To Do 삭제하기')
+                                ],
+                              ))
                         ],
                       ),
                     );

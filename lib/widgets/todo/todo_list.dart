@@ -20,7 +20,7 @@ class TodoList extends StatelessWidget {
               checkboxCallback: (bool checkboxState) {
                 todoData.updateTodo(todo);
               },
-              longPressCallback: () {
+              deleteCallback: () {
                 todoData.deleteTodo(todo);
               },
               editedCallback: (String updateName) {
