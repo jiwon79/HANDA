@@ -22,4 +22,22 @@ class Todo {
   void updateName(String updateName) {
     name = updateName;
   }
+
+  factory Todo.fromJson(Map<String, dynamic> json) => Todo(
+      name: json['name'],
+      isDone: json['is_done'],
+  );
+
+}
+
+class TodoResponse {
+  TodoResponse({
+    required this.todoList,
+  });
+
+  List<Todo> todoList;
+
+  factory TodoResponse.fromJson(List<dynamic> jsonList) => TodoResponse(
+      todoList: jsonList.map((json) => Todo.fromJson(json)).toList(),
+  );
 }
