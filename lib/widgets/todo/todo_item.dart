@@ -48,7 +48,6 @@ class _TodoItemState extends State<TodoItem> {
                   // labelText: todoName,
                     hintText: widget.todoName
                 ),
-
               ),
         )
             : Text(widget.todoName),
