@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_todo/provider/todo.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_todo/services/auth_api.dart';
 
 class LoginPage extends StatefulWidget {
@@ -13,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
 
-  void login() async {
+  void login(context) async {
       var data = {
         'username': _idController.text,
         'password': _pwController.text,
@@ -23,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
       if (response.statusCode == 200) {
         final storage = FlutterSecureStorage();
         await storage.write(key: 'token', value: response.data.access_token);
+        await Provider.of<TodoData>(context, listen: false).getTodoList();
         Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
       } else if (response.statusCode == 404) {
         showDialog(
@@ -86,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
             TextButton(
               child: Text('로그인'),
               onPressed: () {
-                login();
+                login(context);
               },
             )
           ],

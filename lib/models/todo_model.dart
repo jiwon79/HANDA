@@ -4,12 +4,14 @@ class Todo {
     required this.isDone,
     this.isEditing = false,
     this.dueDate = '2022-01-18',
+    required this.id,
   });
 
   String name;
   bool isDone = false;
   bool isEditing;
   String dueDate;
+  String id;
 
   void toggleDone() {
     isDone = !isDone;
@@ -24,8 +26,10 @@ class Todo {
   }
 
   factory Todo.fromJson(Map<String, dynamic> json) => Todo(
-      name: json['name'],
-      isDone: json['is_done'],
+    name: json['title'],
+    isDone: json['is_done'],
+    dueDate: json['due_date'],
+    id: json['id'],
   );
 
 }

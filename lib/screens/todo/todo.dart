@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/services/user_api.dart';
+import 'package:flutter_todo/services/todo_api.dart';
 import 'package:flutter_todo/widgets/todo/calendar.dart';
 import 'package:flutter_todo/widgets/todo/todo_list.dart';
 import 'package:flutter_todo/provider/todo.dart';
@@ -15,9 +15,11 @@ class TodoPage extends StatefulWidget {
 class _TodoPageState extends State<TodoPage> {
 
   void getData () async {
-    var response = await UserApi().getMyData();
+    var response = await TodoApi().getTodoData();
+    print('1234');
     print(response);
   }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -34,6 +36,12 @@ class _TodoPageState extends State<TodoPage> {
             );
           }),
           TodoList(),
+          TextButton(
+            onPressed: () {
+              getData();
+            },
+            child: Text('버튼')
+          )
         ],
       ),
       onTap: () {
