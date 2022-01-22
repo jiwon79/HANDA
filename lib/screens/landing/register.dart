@@ -40,7 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
       'nickname': _idController.text,
       'password': _pwController.text,
     };
-    var response = await AuthApi().registerApi(data);
+    var response = await AuthApi().registerRequest(data);
 
     if (response == 400) {
       showDialog(

@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
         'password': _pwController.text,
       };
 
-      var response = await AuthApi().loginApi(data);
+      var response = await AuthApi().loginRequest(data);
       if (response.statusCode == 200) {
         final storage = FlutterSecureStorage();
         await storage.write(key: 'token', value: response.data.access_token);

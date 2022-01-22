@@ -9,7 +9,7 @@ class AuthApi {
     http = HttpService();
   }
 
-  Future registerApi(data) async {
+  Future registerRequest(data) async {
     late Response response;
     late RegisterResponse registerResponse;
     try {
@@ -28,7 +28,7 @@ class AuthApi {
     }
   }
 
-  Future<Response> loginApi(data) async {
+  Future<Response> loginRequest(data) async {
     late Response response;
     late LoginResponse loginResponse;
     try {
