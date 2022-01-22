@@ -30,8 +30,14 @@ class TodoData with ChangeNotifier {
     return todosSelectedDay;
   }
 
-  void addTodo() {
-    _todos.add(Todo(name: 'new', isDone: false, isEditing: true, id: '11'));
+  void addTodo(DateTime date) {
+    _todos.add(Todo(
+        name: 'new',
+        isDone: false,
+        isEditing: true,
+        id: '11',
+        dueDate: DateFormat('yyyy-MM-dd').format(date),
+    ));
     notifyListeners();
   }
 

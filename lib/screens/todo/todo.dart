@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/provider/calendar.dart';
 import 'package:flutter_todo/widgets/todo/calendar.dart';
 import 'package:flutter_todo/widgets/todo/todo_list.dart';
 import 'package:flutter_todo/provider/todo.dart';
@@ -22,7 +23,7 @@ class _TodoPageState extends State<TodoPage> {
           Consumer<TodoData>(builder: (context, todoData, child) {
             return TextButton(
               onPressed: () {
-                todoData.addTodo();
+                todoData.addTodo(context.read<CalendarData>().selectedDay);
               },
               child: Text('할일 추가'),
             );
