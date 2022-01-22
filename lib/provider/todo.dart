@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/models/todo_model.dart';
 import 'package:flutter_todo/services/todo_api.dart';
+import 'package:intl/intl.dart';
 
 class TodoData with ChangeNotifier {
   List<Todo> _todos = [];
@@ -14,6 +15,19 @@ class TodoData with ChangeNotifier {
 
   int get todoCount {
     return _todos.length;
+  }
+
+  List<Todo> getTodosSelectedDay(DateTime date) {
+    List<Todo> todosSelectedDay = [];
+    String dateFormat = DateFormat('yyyy-MM-dd').format(date);
+    print(dateFormat);
+
+    for(Todo todo in _todos) {
+      if (todo.dueDate == dateFormat) {
+        todosSelectedDay.add(todo);
+      }
+    }
+    return todosSelectedDay;
   }
 
   void addTodo() {
