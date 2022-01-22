@@ -11,11 +11,28 @@ class TodoApi {
 
   Future getTodoData() async {
     late Response response;
-    late TodoResponse todoResponse;
+    late TodoListResponse todoListResponse;
     try {
       response = await http.getRequest('/users/me/todos');
       if (response.statusCode == 200) {
-        todoResponse = TodoResponse.fromJson(response.data);
+        todoListResponse = TodoListResponse.fromJson(response.data);
+        response.data = todoListResponse;
+      }
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+      throw(Exception('UnExpected error!!!'));
+    }
+  }
+
+
+  Future addTodoRequest(data) async {
+    late Response response;
+    late Todo todoResponse;
+    try {
+      response = await http.postRequest('/todos/', data);
+      if (response.statusCode == 201) {
+        todoResponse = Todo.fromJson(response.data);
         response.data = todoResponse;
       }
       return response;

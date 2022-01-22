@@ -30,13 +30,20 @@ class TodoData with ChangeNotifier {
     return todosSelectedDay;
   }
 
-  void addTodo(DateTime date) {
+  void addTodo(DateTime date) async {
+    var requestData = {
+      'title': 'new',
+      'due_date': DateFormat('yyyy-MM-dd').format(date),
+    };
+    var todoResponse = await TodoApi().addTodoRequest(requestData);
+    print(todoResponse);
+
     _todos.add(Todo(
-        name: 'new',
-        isDone: false,
+        name: todoResponse.data.name,
+        isDone: todoResponse.data.isDone,
         isEditing: true,
-        id: '11',
-        dueDate: DateFormat('yyyy-MM-dd').format(date),
+        id: todoResponse.data.id,
+        dueDate: todoResponse.data.dueDate,
     ));
     notifyListeners();
   }

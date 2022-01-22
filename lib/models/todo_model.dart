@@ -3,7 +3,7 @@ class Todo {
     required this.name,
     required this.isDone,
     this.isEditing = false,
-    this.dueDate = '2022-01-18',
+    required this.dueDate,
     required this.id,
   });
 
@@ -31,17 +31,17 @@ class Todo {
     dueDate: json['due_date'],
     id: json['id'],
   );
-
 }
 
-class TodoResponse {
-  TodoResponse({
+class TodoListResponse {
+  TodoListResponse({
     required this.todoList,
   });
 
   List<Todo> todoList;
 
-  factory TodoResponse.fromJson(List<dynamic> jsonList) => TodoResponse(
+  factory TodoListResponse.fromJson(List<dynamic> jsonList) => TodoListResponse(
       todoList: jsonList.map((json) => Todo.fromJson(json)).toList(),
   );
 }
+
