@@ -56,12 +56,30 @@ class HttpService {
     String? token = await storage.read(key: "token");
     _dio.options.headers = {
       HttpHeaders.authorizationHeader: "Bearer $token",
-      // HttpHeaders.contentTypeHeader: 'application/x-www-form-urlencoded',
     };
 
     Response response;
     try {
       response = await _dio.post(endPoint, data: data);
+    } on DioError catch (e) {
+      print(e.message);
+      print(e.response);
+      return e.response;
+    }
+
+    return response;
+  }
+
+  Future deleteRequest(String endPoint, Map<String, dynamic> parameters) async {
+    final storage = FlutterSecureStorage();
+    String? token = await storage.read(key: "token");
+    _dio.options.headers = {
+      HttpHeaders.authorizationHeader: "Bearer $token",
+    };
+
+    Response response;
+    try {
+      response = await _dio.delete(endPoint, queryParameters: parameters);
     } on DioError catch (e) {
       print(e.message);
       print(e.response);
