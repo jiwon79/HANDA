@@ -42,6 +42,22 @@ class TodoApi {
     }
   }
 
+  Future updateTodoRequest(todoId, data) async {
+    late Response response;
+    late Todo updateTodoResponse;
+    try {
+      response = await http.putRequest('/todos/'+todoId, data);
+      if (response.statusCode == 200) {
+        updateTodoResponse = Todo.fromJson(response.data);
+        response.data = updateTodoResponse;
+      }
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+      throw(Exception('UnExpected error!!!'));
+    }
+  }
+
   Future deleteTodoRequest(String todoId) async {
     late Response response;
     try {

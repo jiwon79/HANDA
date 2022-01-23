@@ -70,7 +70,7 @@ class HttpService {
     return response;
   }
 
-  Future putRequest(String endPoint) async {
+  Future putRequest(String endPoint, Map<String, dynamic> data) async {
     final storage = FlutterSecureStorage();
     String? token = await storage.read(key: "token");
     _dio.options.headers = {
@@ -79,7 +79,7 @@ class HttpService {
 
     Response response;
     try {
-      response = await _dio.put(endPoint);
+      response = await _dio.put(endPoint, data: data);
     } on DioError catch (e) {
       print(e.message);
       print(e.response);

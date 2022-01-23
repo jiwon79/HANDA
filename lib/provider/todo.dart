@@ -48,7 +48,14 @@ class TodoData with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateTodo(Todo todo) {
+  void updateTodo(Todo todo) async {
+    var requestData = {
+      'title': todo.name,
+      'due_date': todo.dueDate,
+      'is_done': !todo.isDone,
+    };
+    Response response = await TodoApi().updateTodoRequest(todo.id,requestData);
+    print(response);
     todo.toggleDone();
     notifyListeners();
   }
