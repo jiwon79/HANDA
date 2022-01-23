@@ -41,4 +41,19 @@ class TodoApi {
       throw(Exception('UnExpected error!!!'));
     }
   }
+
+  Future deleteTodoRequest(parameters) async {
+    late Response response;
+    try {
+      response = await http.deleteRequest('/todos/', parameters);
+      if (response.statusCode == 204) {
+
+      } else if (response.statusCode == 401) {
+        print('delete request unauthorized');
+      }
+    } on DioError catch (e) {
+      print(e.response);
+      throw(Exception('UnExpected error!!!'));
+    }
+  }
 }
