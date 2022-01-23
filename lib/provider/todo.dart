@@ -49,18 +49,25 @@ class TodoData with ChangeNotifier {
   }
 
   void updateTodo(Todo todo) async {
-    var requestData = {
+    Map<String, dynamic> requestData = {
       'title': todo.name,
       'due_date': todo.dueDate,
       'is_done': !todo.isDone,
     };
-    Response response = await TodoApi().updateTodoRequest(todo.id,requestData);
+    Response response = await TodoApi().updateTodoRequest(todo.id, requestData);
     print(response);
     todo.toggleDone();
     notifyListeners();
   }
 
-  void updateTodoName(Todo todo, String updateName) {
+  void updateTodoName(Todo todo, String updateName) async {
+    Map<String, dynamic> requestData = {
+      'title': updateName,
+      'due_date': todo.dueDate,
+      'is_done': todo.isDone,
+    };
+    Response response = await TodoApi().updateTodoRequest(todo.id, requestData);
+    print(response);
     todo.updateName(updateName);
     todo.toggleEditing();
     notifyListeners();
