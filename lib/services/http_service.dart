@@ -26,11 +26,11 @@ class HttpService {
         return errorInterceptorHandler.next(error);
       },
       onRequest: (request, requestInterceptorHandler) {
-        print("${request.method} | ${request.path} | ${request.data}");
+        print("${request.method} | ${request.path} | ${request.data} | ${request.queryParameters}");
         return requestInterceptorHandler.next(request);
       },
       onResponse: (response, responseInterceptorHandler) {
-        print('${response.statusCode} ${response.data}');
+        print('${response.statusCode} | ${response.data}');
         return responseInterceptorHandler.next(response);
       }
     ));
@@ -70,7 +70,7 @@ class HttpService {
     return response;
   }
 
-  Future deleteRequest(String endPoint, Map<String, dynamic> parameters) async {
+  Future deleteRequest(String endPoint) async {
     final storage = FlutterSecureStorage();
     String? token = await storage.read(key: "token");
     _dio.options.headers = {
@@ -79,7 +79,7 @@ class HttpService {
 
     Response response;
     try {
-      response = await _dio.delete(endPoint, queryParameters: parameters);
+      response = await _dio.delete(endPoint);
     } on DioError catch (e) {
       print(e.message);
       print(e.response);
