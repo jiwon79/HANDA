@@ -70,6 +70,25 @@ class HttpService {
     return response;
   }
 
+  Future putRequest(String endPoint) async {
+    final storage = FlutterSecureStorage();
+    String? token = await storage.read(key: "token");
+    _dio.options.headers = {
+      HttpHeaders.authorizationHeader: "Bearer $token",
+    };
+
+    Response response;
+    try {
+      response = await _dio.put(endPoint);
+    } on DioError catch (e) {
+      print(e.message);
+      print(e.response);
+      return e.response;
+    }
+
+    return response;
+  }
+
   Future deleteRequest(String endPoint) async {
     final storage = FlutterSecureStorage();
     String? token = await storage.read(key: "token");
