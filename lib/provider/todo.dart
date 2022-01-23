@@ -59,7 +59,9 @@ class TodoData with ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteTodo(Todo todo) {
+  void deleteTodo(Todo todo) async {
+    await TodoApi().deleteTodoRequest(todo.id);
+
     _todos.remove(todo);
     notifyListeners();
   }

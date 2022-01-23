@@ -76,10 +76,10 @@ class _TodoItemState extends State<TodoItem> {
                               )
                           ),
                           TextButton(
-                              onPressed: () {
+                              onPressed: () async {
+                                await widget.deleteCallback();
                                 Navigator.pop(context);
-                                widget.deleteCallback();
-                              }, 
+                              },
                               child: Column(
                                 children: [
                                   Icon(Icons.clear),
