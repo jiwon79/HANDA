@@ -11,18 +11,16 @@ class AuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 40,
-        child: ElevatedButton(
-            child: authButtonContent(action),
-            onPressed: () {
-              authButtonLogic(context, action);
-              // Navigator.pushNamed(context, '/landing/login');
-            },
-            style: authButtonStyle(action)
-        ),
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: 40,
+      child: ElevatedButton(
+        child: authButtonContent(action),
+        onPressed: () {
+          authButtonLogic(context, action);
+          // Navigator.pushNamed(context, '/landing/login');
+        },
+        style: authButtonStyle(action)
       ),
     );
   }
@@ -44,7 +42,7 @@ Widget authButtonContent(AuthAction action) {
       color: Color(0xff191919),
       fontSize: 16,
       fontFamily: 'noto',
-      fontWeight: FontWeight.w600
+      fontWeight: FontWeight.w700
   );
 
   TextStyle whiteTextStyle = TextStyle(
@@ -75,9 +73,21 @@ ButtonStyle authButtonStyle(AuthAction action) {
       })
   );
 
+  ButtonStyle whiteButtonStyle = ButtonStyle(
+    backgroundColor: MaterialStateProperty.resolveWith((states) {
+      if (states.contains(MaterialState.disabled)) {
+        return Colors.grey;
+      } else {
+        return Color(0xffF9F9F9);
+      }
+    }),
+  );
+
   switch (action) {
     case AuthAction.landingLogin:
       return orangeButtonStyle;
+    case AuthAction.landingRegister:
+      return whiteButtonStyle;
     default:
       return ButtonStyle();
   }
