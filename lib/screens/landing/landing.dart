@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_todo/widgets/atom/AuthButton.dart';
+
 
 class LandingPage extends StatelessWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -38,35 +40,37 @@ class LandingPage extends StatelessWidget {
                 ),
               ),
             ),
-            Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 40,
-                margin: EdgeInsets.fromLTRB(0, 94, 0, 9),
-                child: ElevatedButton(
-                  child: Text(
-                      '로그인',
-                    style: TextStyle(
-                      fontFamily: 'noto',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/landing/login');
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith((states) {
-                      if (states.contains(MaterialState.disabled)) {
-                        return Colors.grey;
-                      } else {
-                        return Color(0xffE4581B);
-                      }
-                    })
-                  )
-                ),
-              ),
-            ),
+            // Center(
+            //   child: Container(
+            //     width: MediaQuery.of(context).size.width,
+            //     height: 40,
+            //     margin: EdgeInsets.fromLTRB(0, 94, 0, 9),
+            //     child: ElevatedButton(
+            //       child: Text(
+            //           '로그인',
+            //         style: TextStyle(
+            //           fontFamily: 'noto',
+            //           fontWeight: FontWeight.w700,
+            //           fontSize: 16
+            //         ),
+            //       ),
+            //       onPressed: () {
+            //         Navigator.pushNamed(context, '/landing/login');
+            //       },
+            //       style: ButtonStyle(
+            //         backgroundColor: MaterialStateProperty.resolveWith((states) {
+            //           if (states.contains(MaterialState.disabled)) {
+            //             return Colors.grey;
+            //           } else {
+            //             return Color(0xffE4581B);
+            //           }
+            //         })
+            //       )
+            //     ),
+            //   ),
+            // ),
+            AuthButton(action: AuthAction.landingLogin),
+            AuthButton(action: AuthAction.landingRegister),
             Center(
               child: Container(
                 height: 40,
@@ -96,7 +100,7 @@ class LandingPage extends StatelessWidget {
                   )
                 ),
               ),
-            )
+            ),
           ],
         ),
       )
