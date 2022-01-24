@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/utils/auth_logic.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({
@@ -17,6 +18,7 @@ class AuthButton extends StatelessWidget {
         child: ElevatedButton(
             child: authButtonContent(action),
             onPressed: () {
+              authButtonLogic(context, action);
               // Navigator.pushNamed(context, '/landing/login');
             },
             style: authButtonStyle(action)
@@ -81,3 +83,13 @@ ButtonStyle authButtonStyle(AuthAction action) {
   }
 }
 
+void authButtonLogic(BuildContext context, AuthAction action) {
+  switch (action) {
+    case AuthAction.landingLogin:
+      return AuthLogic().landingLoginLogic(context);
+    case AuthAction.landingRegister:
+      return AuthLogic().landingRegisterLogic(context);
+    default:
+      return;
+  }
+}
