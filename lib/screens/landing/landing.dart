@@ -18,8 +18,8 @@ class LandingPage extends StatelessWidget {
             fit: BoxFit.cover),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(
               child: SvgPicture.asset(
@@ -28,20 +28,32 @@ class LandingPage extends StatelessWidget {
                 color: Colors.white,
               )
             ),
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 200, 0, 0),
-              child: Text(
-                '완벽한 실천을 위한 \n완벽한 플래너',
-                style: TextStyle(
-                  fontSize: 32,
-                  color: Colors.white,
-                  fontFamily: 'noto',
-                  fontWeight: FontWeight.w700,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '완벽한 실천을 위한 \n완벽한 플래너',
+                  style: TextStyle(
+                    fontSize: 32,
+                    color: Colors.white,
+                    fontFamily: 'noto',
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-            ),
-            AuthButton(action: AuthAction.landingLogin),
-            AuthButton(action: AuthAction.landingRegister),
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 94, 0, 9),
+                    child: AuthButton(action: AuthAction.landingLogin))
+                ,
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 9, 0, 75),
+                  child: AuthButton(action: AuthAction.landingRegister)
+                ),
+              ],
+            )
+            // Container(
+            //   margin: EdgeInsets.fromLTRB(0, 200, 0, 0),
+            //   child:
+            // ),
           ],
         ),
       )
