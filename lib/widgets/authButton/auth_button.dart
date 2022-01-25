@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_todo/utils/enums.dart';
 import 'package:flutter_todo/widgets/authButton/content.dart';
 import 'package:flutter_todo/widgets/authButton/style.dart';
 import 'package:flutter_todo/widgets/authButton/logic.dart';
 
-
 class AuthButton extends StatelessWidget {
   const AuthButton({
     Key? key,
-    required this.action
+    required this.action,
+    this.data = const {},
   }) : super(key: key);
 
   final AuthAction action;
+  final Map<String, dynamic> data;
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +22,11 @@ class AuthButton extends StatelessWidget {
       child: ElevatedButton(
         child: authButtonContent(action),
         onPressed: () {
-          authButtonLogic(context, action);
+          authButtonLogic(context, action, data);
           // Navigator.pushNamed(context, '/landing/login');
         },
         style: authButtonStyle(action)
       ),
     );
-  }
-}
-
-void authButtonLogic(BuildContext context, AuthAction action) {
-  switch (action) {
-    case AuthAction.landingLogin:
-      return AuthLogic().landingLoginLogic(context);
-    case AuthAction.landingRegister:
-      return AuthLogic().landingRegisterLogic(context);
-    default:
-      return;
   }
 }

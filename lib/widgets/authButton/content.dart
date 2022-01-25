@@ -21,6 +21,8 @@ Widget authButtonContent(AuthAction action) {
       return Text('로그인', style: whiteTextStyle);
     case AuthAction.landingRegister:
       return Text('회원가입', style: blackTextStyle);
+    case AuthAction.login:
+      return Text('로그인', style: whiteTextStyle);
     default:
       return Text('');
   }

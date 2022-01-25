@@ -27,6 +27,8 @@ ButtonStyle authButtonStyle(AuthAction action) {
       return orangeButtonStyle;
     case AuthAction.landingRegister:
       return whiteButtonStyle;
+    case AuthAction.login:
+      return orangeButtonStyle;
     default:
       return ButtonStyle();
   }
