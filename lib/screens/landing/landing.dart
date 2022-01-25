@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_todo/widgets/atom/AuthButton.dart';
-
+import 'package:flutter_todo/widgets/authButton/auth_button.dart';
+import 'package:flutter_todo/utils/enums.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -40,67 +40,8 @@ class LandingPage extends StatelessWidget {
                 ),
               ),
             ),
-            // Center(
-            //   child: Container(
-            //     width: MediaQuery.of(context).size.width,
-            //     height: 40,
-            //     margin: EdgeInsets.fromLTRB(0, 94, 0, 9),
-            //     child: ElevatedButton(
-            //       child: Text(
-            //           '로그인',
-            //         style: TextStyle(
-            //           fontFamily: 'noto',
-            //           fontWeight: FontWeight.w700,
-            //           fontSize: 16
-            //         ),
-            //       ),
-            //       onPressed: () {
-            //         Navigator.pushNamed(context, '/landing/login');
-            //       },
-            //       style: ButtonStyle(
-            //         backgroundColor: MaterialStateProperty.resolveWith((states) {
-            //           if (states.contains(MaterialState.disabled)) {
-            //             return Colors.grey;
-            //           } else {
-            //             return Color(0xffE4581B);
-            //           }
-            //         })
-            //       )
-            //     ),
-            //   ),
-            // ),
             AuthButton(action: AuthAction.landingLogin),
             AuthButton(action: AuthAction.landingRegister),
-            Center(
-              child: Container(
-                height: 40,
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.fromLTRB(0, 9, 0, 9),
-                child: ElevatedButton(
-                  child: Text(
-                    '회원가입',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontFamily: 'noto',
-                      fontWeight: FontWeight.w700
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/landing/register');
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith((states) {
-                      if (states.contains(MaterialState.disabled)) {
-                        return Colors.grey;
-                      } else {
-                        return Color(0xffF9F9F9);
-                      }
-                    }),
-                  )
-                ),
-              ),
-            ),
           ],
         ),
       )
