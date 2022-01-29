@@ -11,13 +11,13 @@ class UserApi {
 
   Future getMyData() async {
     late Response response;
-    late MyDataResponse myDateResponse;
+    late UserData userDataResponse;
 
     try {
       response = await http.getRequest('/users/me');
       if (response.statusCode == 200) {
-        myDateResponse = MyDataResponse.fromJson(response.data);
-        response.data = myDateResponse;
+        userDataResponse = UserData.fromJson(response.data);
+        response.data = userDataResponse;
       }
       return response;
     } on DioError catch(e) {
