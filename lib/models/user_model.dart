@@ -24,12 +24,12 @@ class User {
 
 class UserList {
   UserList({
-    required this.userDataList,
+    required this.userList,
   });
 
-  List<User> userDataList;
+  List<User> userList;
 
   factory UserList.fromJson(List<dynamic> jsonList) => UserList(
-    userDataList: jsonList.map((json) => User.fromJson(json)).toList(),
+    userList: jsonList.map((json) => User.fromJson(json)).toList(),
   );
 }
