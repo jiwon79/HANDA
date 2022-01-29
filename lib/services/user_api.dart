@@ -11,12 +11,12 @@ class UserApi {
 
   Future getMyData() async {
     late Response response;
-    late UserData userDataResponse;
+    late User userDataResponse;
 
     try {
       response = await http.getRequest('/users/me');
       if (response.statusCode == 200) {
-        userDataResponse = UserData.fromJson(response.data);
+        userDataResponse = User.fromJson(response.data);
         response.data = userDataResponse;
       }
       return response;
