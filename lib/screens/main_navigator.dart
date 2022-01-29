@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo/screens/todo/todo.dart';
 import 'package:flutter_todo/screens/feed/feed.dart';
 import 'package:flutter_todo/screens/my_page/my_page.dart';
-import 'package:flutter_todo/screens/group/group.dart';
+import 'package:flutter_todo/screens/follow/follow.dart';
 
 
 class MainNavigator extends StatefulWidget {
@@ -19,7 +19,7 @@ class _MainNavigatorState extends State<MainNavigator> {
     FeedPage(),
     TodoPage(),
     MyPage(),
-    GroupPage(),
+    FollowPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -44,7 +44,7 @@ class _MainNavigatorState extends State<MainNavigator> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home, color: Colors.black),
-            label: 'home',
+            label: 'feed',
           ),
           BottomNavigationBarItem(
             icon: Icon(
@@ -58,14 +58,14 @@ class _MainNavigatorState extends State<MainNavigator> {
               Icons.person_outline_rounded,
               color: Colors.black,
             ),
-            label: 'ccc',
+            label: 'my page',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person_search,
               color: Colors.black,
             ),
-            label: 'ddd',
+            label: 'follow',
           ),
         ],
       ),
