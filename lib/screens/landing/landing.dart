@@ -13,13 +13,13 @@ class LandingPage extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.fromLTRB(20, 100, 20, 0),
         decoration: BoxDecoration(
-        image: DecorationImage(
+          image: DecorationImage(
             image: AssetImage('assets/images/landing_background.png'),
-            fit: BoxFit.cover),
+            fit: BoxFit.cover
+          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(
               child: SvgPicture.asset(
@@ -42,18 +42,14 @@ class LandingPage extends StatelessWidget {
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 94, 0, 9),
-                    child: AuthButton(action: AuthAction.landingLogin))
-                ,
+                    child: AuthButton(action: AuthAction.landingLogin)
+                ),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 9, 0, 75),
                   child: AuthButton(action: AuthAction.landingRegister)
                 ),
               ],
             )
-            // Container(
-            //   margin: EdgeInsets.fromLTRB(0, 200, 0, 0),
-            //   child:
-            // ),
           ],
         ),
       )
