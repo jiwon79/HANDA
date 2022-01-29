@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/provider/user.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_todo/provider/calendar.dart';
@@ -15,6 +16,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => TodoData()),
         ChangeNotifierProvider(create: (_) => CalendarData()),
+        ChangeNotifierProvider(create: (_) => UserData()),
       ],
       child: MyApp(),
     )

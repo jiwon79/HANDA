@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:flutter_todo/utils/enums.dart';
 import 'package:flutter_todo/provider/todo.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_todo/provider/user.dart';
 import 'package:flutter_todo/services/auth_api.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 
 void authButtonLogic(BuildContext context, AuthAction action, data) {
@@ -22,6 +23,7 @@ void authButtonLogic(BuildContext context, AuthAction action, data) {
       final storage = FlutterSecureStorage();
       await storage.write(key: 'token', value: response.data.access_token);
       await Provider.of<TodoData>(context, listen: false).getTodoList();
+      await Provider.of<UserData>(context, listen: false).getMyData();
       Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
     } else if (response.statusCode == 404) {
       showDialog(
