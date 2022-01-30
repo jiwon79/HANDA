@@ -13,9 +13,15 @@ class FollowPage extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xfff8f8fa),
           title: TabBar(
+            indicatorColor: Color(0xff000000),
+            unselectedLabelColor: Color(0xffA6A6A6),
+            labelColor: Color(0xff000000),
             tabs: [
-              Tab(text: '팔로잉'),
+              Tab(
+                child: Text("팔로잉")
+              ),
               Tab(text: '팔로워'),
               Tab(text: '그룹'),
             ],
