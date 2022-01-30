@@ -16,6 +16,14 @@ class UserData with ChangeNotifier {
   List<User> _followerList = [];
   List<User> get followerList => _followerList;
 
+  int get followingCount {
+    return _followingList.length;
+  }
+
+  int get followerCount {
+    return _followerList.length;
+  }
+
   Future getMyData() async {
     Response<dynamic> userResponse =  await UserApi().getMyData();
     Response<dynamic> followingListResponse =  await UserApi().getMyFollowingList();
