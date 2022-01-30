@@ -17,6 +17,10 @@ class TodoData with ChangeNotifier {
     return _todos.length;
   }
 
+  int get todoDoneCount {
+    return _todos.where((Todo element) => element.isDone).length;
+  }
+
   List<Todo> getTodosSelectedDay(DateTime date) {
     List<Todo> todosSelectedDay = [];
     String dateFormat = DateFormat('yyyy-MM-dd').format(date);
