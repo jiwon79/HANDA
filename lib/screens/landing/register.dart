@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/models/auth_model.dart';
 import 'package:flutter_todo/services/auth_api.dart';
+import 'package:flutter_todo/widgets/common/textfield_widget.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -10,35 +11,33 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _idController = TextEditingController();
-  final TextEditingController _mailController = TextEditingController();
-  final TextEditingController _pwController = TextEditingController();
-  final TextEditingController _checkPwController = TextEditingController();
+  Map<String, dynamic> _userData = {
+    'username': '',
+    'nickname': '',
+    'email': '',
+    'password': '',
+    're_password': '',
+  };
 
-  bool _isCheckedPw = false;
-  bool _isOverlapId = true;
-  List<String> pwDialog = ['비밀번호가 일치하지 않습니다.', '비빌번호가 일치합니다.'];
-
-  void checkIsSamePw (String text) {
-    setState(() {
-      if (_pwController.text == _checkPwController.text) {
-        _isCheckedPw = true;
-      } else {
-        _isCheckedPw = false;
-      }
-    });
+  Function handleState(state) {
+    void handleStateFunction(text) {
+      setState(() {
+        _userData[state] = text;
+        print(_userData);
+      });
+    };
+    return handleStateFunction;
   }
 
   RegisterResponse? registerResponse;
   bool isLoading = false;
 
   void register () async {
-    var data = {
-      'username': _nameController.text,
-      'email': _mailController.text,
-      'nickname': _idController.text,
-      'password': _pwController.text,
+    Map<String, dynamic> data = {
+      'username': _userData['username'],
+      'email': _userData['email'],
+      'nickname': _userData['nickname'],
+      'password': _userData['password'],
     };
     var response = await AuthApi().registerRequest(data);
 
@@ -87,54 +86,35 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: Text('회원가입'),
-        ),
-        body: Column(
+      appBar: AppBar(
+        title: Text('회원가입'),
+      ),
+      body: Container(
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+        child: Column(
           children: [
-            TextField(
-              decoration: InputDecoration(
-                  labelText: '이름'
-              ),
-              controller: _nameController,
+            TextFieldWidget(label: '이름', onChanged: handleState('username')),
+            TextFieldWidget(
+              label: '아이디',
+              onChanged: handleState('nickname')
             ),
-            TextField(
-              decoration: InputDecoration(
-                  labelText: '아이디'
-              ),
-              controller: _idController,
+            Text('아이디 중복 확인이 되지 않았습니다.'),
+            TextFieldWidget(label: '이메일 입력', onChanged: handleState('email')),
+            TextFieldWidget(label: '비밀번호 입력', onChanged: handleState('password')),
+            TextFieldWidget(label: '비밀번호 확인', onChanged: handleState('re_password')),
+            Text(_userData['password'] == _userData['re_password']
+              ? '비밀번호가 일치'
+              : '비밀번호가 불일치'
             ),
-            Text(_isOverlapId ? '아이디가 중복' : '아이디 중복 아님'),
-            TextField(
-              decoration: InputDecoration(
-                  labelText: '이메일'
-              ),
-              controller: _mailController,
-              onChanged: checkIsSamePw,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                  labelText: '비밀번호'
-              ),
-              controller: _pwController,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                  labelText: '비밀번호 확인'
-              ),
-              controller: _checkPwController,
-              onChanged: checkIsSamePw,
-            ),
-            Text(_isCheckedPw ? '비밀번호가 일치' : '비밀번호가 불일치'),
-            // Text(isLoading.toString()),
-            OutlinedButton(
+            TextButton(
               child: Text('회원가입'),
               onPressed: () {
                 register();
               },
             )
           ],
-        )
+        ),
+      )
     );
   }
 }
