@@ -13,7 +13,6 @@ ButtonStyle authButtonStyle(AuthAction action) {
     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0),
-        side: BorderSide(color: Colors.red)
       )
     )
   );
@@ -29,7 +28,6 @@ ButtonStyle authButtonStyle(AuthAction action) {
     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0),
-        side: BorderSide(color: Colors.red)
       )
     )
   );
