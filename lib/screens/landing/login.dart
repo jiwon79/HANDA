@@ -20,12 +20,19 @@ class _LoginPageState extends State<LoginPage> {
     'password': '',
   };
 
+  void handleUsername(text) {
+    setState(() {
+      _userData['username'] = text;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text('login page'),
         ),
+        resizeToAvoidBottomInset: false,
         body: Container(
           padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
           color: Color(0xfff8f8fa),
