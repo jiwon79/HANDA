@@ -13,10 +13,14 @@ class TextFieldWidget extends StatelessWidget {
     Key? key,
     required this.label,
     required this.onChanged,
+    this.maxLength = 30,
+    this.suffix = const Text(''),
   }) : super(key: key);
 
   final String label;
   final Function onChanged;
+  final Widget suffix;
+  final int maxLength;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +28,12 @@ class TextFieldWidget extends StatelessWidget {
       height: 40,
       margin: EdgeInsets.fromLTRB(0, 9, 0, 9),
       child: TextField(
+        maxLength: maxLength,
         onChanged: (text) {
           onChanged(text);
         },
         decoration: InputDecoration(
+          counterText: "",
           labelStyle: TextStyle(
             fontSize: 16,
             fontFamily: 'noto',
@@ -36,6 +42,7 @@ class TextFieldWidget extends StatelessWidget {
           labelText: label,
           enabledBorder: outlineStyle,
           focusedBorder: outlineStyle,
+          suffix: suffix,
         ),
       ),
     );
