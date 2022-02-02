@@ -28,6 +28,11 @@ class TextFieldWidget extends StatelessWidget {
           onChanged(text);
         },
         decoration: InputDecoration(
+          labelStyle: TextStyle(
+            fontSize: 16,
+            fontFamily: 'noto',
+            fontWeight: FontWeight.w500
+          ),
           labelText: label,
           enabledBorder: outlineStyle,
           focusedBorder: outlineStyle,
