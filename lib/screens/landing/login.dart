@@ -33,9 +33,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('login page'),
-        ),
         resizeToAvoidBottomInset: false,
         body: Container(
           padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -58,6 +55,17 @@ class _LoginPageState extends State<LoginPage> {
                 action: AuthAction.login,
                 data: _userData,
               ),
+              Row(
+                children: [
+                  Text('계정이 없으신가요?'),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/landing/register');
+                    },
+                    child: Text('회원가입')
+                  )
+                ],
+              )
             ],
           ),
         )
