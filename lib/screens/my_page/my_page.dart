@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/widgets/atom/logo_banner.dart';
+import 'package:flutter_todo/widgets/common/logo_banner.dart';
 import 'package:flutter_todo/widgets/my_page/my_profile.dart';
 
 class MyPage extends StatelessWidget {

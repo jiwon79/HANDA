@@ -41,16 +41,35 @@ class _LoginPageState extends State<LoginPage> {
                   )
                 ),
               ),
-              TextField(
-                decoration: InputDecoration(
-                    labelText: '아이디'
+              Container(
+                height: 40,
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: '아이디',
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff707070),
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(0))
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0xff707070),
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(0))
+                    ),
+                    focusColor: Colors.black,
+                    hoverColor: Colors.black,
+                  ),
+                  controller: _idController,
+                  onChanged: (text) {
+                    setState(() {
+                      _userData['username'] = text;
+                    });
+                  },
                 ),
-                controller: _idController,
-                onChanged: (text) {
-                  setState(() {
-                    _userData['username'] = text;
-                  });
-                },
               ),
               TextField(
                 decoration: InputDecoration(
