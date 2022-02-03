@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flutter_todo/widgets/authButton/auth_button.dart';
 import 'package:flutter_todo/utils/enums.dart';
-import 'package:flutter_todo/widgets/common/textfield_widget.dart';
+import 'package:flutter_todo/widgets/common/textField_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/models/auth_model.dart';
 import 'package:flutter_todo/services/auth_api.dart';
-import 'package:flutter_todo/widgets/common/textfield_widget.dart';
+import 'package:flutter_todo/widgets/common/textField_widget.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
         _userData[state] = text;
         print(_userData);
       });
-    };
+    }
     return handleStateFunction;
   }
 
@@ -89,6 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
       appBar: AppBar(
         title: Text('회원가입'),
       ),
+      // TODO: padding 이 기본적으로 20, 0, 20, 0인 Container 만들기
       body: Container(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: Column(
