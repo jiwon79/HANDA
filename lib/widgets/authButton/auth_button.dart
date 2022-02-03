@@ -23,7 +23,6 @@ class AuthButton extends StatelessWidget {
         child: authButtonContent(action),
         onPressed: () {
           authButtonLogic(context, action, data);
-          // Navigator.pushNamed(context, '/landing/login');
         },
         style: authButtonStyle(action)
       ),

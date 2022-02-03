@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/models/auth_model.dart';
 import 'package:flutter_todo/services/auth_api.dart';
+import 'package:flutter_todo/utils/enums.dart';
+import 'package:flutter_todo/widgets/authButton/auth_button.dart';
 import 'package:flutter_todo/widgets/common/alert_widget.dart';
 import 'package:flutter_todo/widgets/common/suffix_button.dart';
 import 'package:flutter_todo/widgets/common/textField_widget.dart';
@@ -29,43 +31,6 @@ class _RegisterPageState extends State<RegisterPage> {
       });
     }
     return handleStateFunction;
-  }
-
-  RegisterResponse? registerResponse;
-  bool isLoading = false;
-
-  void register () async {
-    Map<String, dynamic> data = {
-      'username': _userData['username'],
-      'email': _userData['email'],
-      'nickname': _userData['nickname'],
-      'password': _userData['password'],
-    };
-    var response = await AuthApi().registerRequest(data);
-
-    if (response == 201) {
-      alertWidget(
-          context: context,
-          title: '회원가입이 되었습니다.',
-          onPress: () {
-            Navigator.pop(context);
-            Navigator.pop(context);
-            Navigator.pushNamed(context, '/landing/login');
-          }
-      );
-    } else if (response == 400) {
-      alertWidget(
-          context: context,
-          title: '회원가입 오류',
-          content: '아이디 혹은 이메일이 이미 존재합니다.'
-      );
-    } else {
-      alertWidget(
-          context: context,
-          title: '알 수 없는 오류',
-          content: '회원가입을 한번 더 부탁드립니다.'
-      );
-    }
   }
 
   void checkNicknameIsOverlap() {
@@ -102,11 +67,9 @@ class _RegisterPageState extends State<RegisterPage> {
               ? '비밀번호가 일치합니다.'
               : '비밀번호가 일치하지 않습니다.'
             ),
-            TextButton(
-              child: Text('회원가입'),
-              onPressed: () {
-                register();
-              },
+            AuthButton(
+              action: AuthAction.register,
+              data: _userData,
             ),
             Text('이미 게정을 가지고 계신가요?'),
             TextButton(

@@ -23,6 +23,8 @@ Widget authButtonContent(AuthAction action) {
       return Text('회원가입', style: blackTextStyle);
     case AuthAction.login:
       return Text('로그인', style: whiteTextStyle);
+    case AuthAction.register:
+      return Text('회원가입 완료하기', style: whiteTextStyle);
     default:
       return Text('');
   }

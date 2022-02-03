@@ -41,6 +41,42 @@ void authButtonLogic(BuildContext context, AuthAction action, data) {
     }
   }
 
+  void afterRegisterAction(context) {
+    Navigator.popUntil(context, (route) => route.isFirst);
+    Navigator.pushNamed(context, '/landing/login');
+  }
+
+  void registerLogic(BuildContext context, data) async {
+    Map<String, dynamic> requestData = {
+      'username': data['username'],
+      'email': data['email'],
+      'nickname': data['nickname'],
+      'password': data['password'],
+    };
+
+    var response = await AuthApi().registerRequest(requestData);
+
+    if (response.statusCode == 201) {
+      alertWidget(
+          context: context,
+          title: '회원가입이 되었습니다.',
+          onPress: afterRegisterAction,
+      );
+    } else if (response.statusCode == 400) {
+      alertWidget(
+          context: context,
+          title: '회원가입 오류',
+          content: '아이디 혹은 이메일이 이미 존재합니다.'
+      );
+    } else {
+      alertWidget(
+          context: context,
+          title: '알 수 없는 오류',
+          content: '회원가입을 한번 더 부탁드립니다.'
+      );
+    }
+  }
+
   switch (action) {
     case AuthAction.landingLogin:
       return landingLoginLogic(context);
@@ -48,6 +84,8 @@ void authButtonLogic(BuildContext context, AuthAction action, data) {
       return landingRegisterLogic(context);
     case AuthAction.login:
       return loginLogic(context, data);
+    case AuthAction.register:
+      return registerLogic(context, data);
     default:
       return;
   }
