@@ -42,9 +42,9 @@ class TextFieldWidget extends StatelessWidget {
           labelText: label,
           enabledBorder: outlineStyle,
           focusedBorder: outlineStyle,
-          suffix: suffix,
+          suffixIcon: suffix,
+          )
         ),
-      ),
     );
   }
 }
