@@ -1,6 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/models/auth_model.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_todo/services/auth_api.dart';
 import 'package:flutter_todo/utils/enums.dart';
 import 'package:flutter_todo/widgets/authButton/auth_button.dart';
@@ -76,11 +75,25 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('회원가입'),
+        title: Text('회원가입',
+          style: TextStyle(
+            color: Colors.black,
+            fontFamily: 'noto',
+            fontWeight: FontWeight.w500,
+            letterSpacing: -1.6,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xfff8f8fa),
+        elevation: 0,
+        iconTheme: IconThemeData(
+          color: Colors.black
+        ),
       ),
       // TODO: padding 이 기본적으로 20, 0, 20, 0인 Container 만들기
       body: Container(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+        color: Color(0xfff8f8fa),
         child: Column(
           children: [
             TextFieldWidget(label: '이름', onChanged: handleState('nickname')),
