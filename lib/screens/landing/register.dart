@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/models/auth_model.dart';
 import 'package:flutter_todo/services/auth_api.dart';
@@ -16,13 +17,13 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   Map<String, dynamic> _userData = {
-    'username': '',
     'nickname': '',
+    'username': '',
     'email': '',
     'password': '',
     're_password': '',
   };
-  bool _isOverlapId = true;
+  bool?  _isAvailableUsername;
 
   Function handleState(state) {
     void handleStateFunction(text) {
@@ -33,8 +34,40 @@ class _RegisterPageState extends State<RegisterPage> {
     return handleStateFunction;
   }
 
-  void checkNicknameIsOverlap() {
-    print(1);
+  void handleUsername(text) {
+    setState(() {
+      _userData['username'] = text;
+      _isAvailableUsername = null;
+    });
+  }
+
+  void checkNicknameIsOverlap() async {
+    Map<String, String> requestData = {};
+    if (_userData['username'] != '') {
+      requestData['username'] = _userData['username'];
+    }
+    if (_userData['email'] != '') {
+      requestData['email'] = _userData['email'];
+    }
+
+    Response response = await AuthApi().checkAvailable(requestData);
+    if (response.statusCode == 200) {
+      if (response.data['is_available']) {
+        setState(() {
+          _isAvailableUsername = true;
+        });
+      } else {
+        setState(() {
+          _isAvailableUsername = false;
+        });
+      }
+    } else if (response.statusCode == 422) {
+      if (response.data['detail'][0]['type'] == 'value_error.email') {
+        alertWidget(context: context, title: '이메일 형식이 잘못되었습니다.');
+      }
+    } else {
+      alertWidget(context: context, title: '다시 확인해주세요.');
+    }
   }
 
 
@@ -50,16 +83,21 @@ class _RegisterPageState extends State<RegisterPage> {
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: Column(
           children: [
-            TextFieldWidget(label: '이름', onChanged: handleState('username')),
+            TextFieldWidget(label: '이름', onChanged: handleState('nickname')),
             TextFieldWidget(
               label: '아이디',
-              onChanged: handleState('nickname'),
+              onChanged: handleUsername,
               suffix: SuffixButton(
                 content: '아이디 중복 확인',
                 onPress: checkNicknameIsOverlap,
               ),
             ),
-            Text('아이디 중복 확인이 되지 않았습니다.'),
+            Text(_isAvailableUsername == null
+              ? '아이디 중복 확인이 되지 않았습니다'
+              : _isAvailableUsername!
+              ? '아이디가 중복되지 않습니다.'
+              : '아이디가 중복되었습니다.'
+            ),
             TextFieldWidget(label: '이메일 입력', onChanged: handleState('email')),
             TextFieldWidget(label: '비밀번호 입력', onChanged: handleState('password')),
             TextFieldWidget(label: '비밀번호 확인', onChanged: handleState('re_password')),
