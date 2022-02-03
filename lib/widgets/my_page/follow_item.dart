@@ -19,20 +19,52 @@ class FollowItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: 74,
+      padding: EdgeInsets.fromLTRB(20, 7, 20, 7),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            width: 60,
-            color: Colors.amber,
-          ),
-          Column(
+          Row(
             children: [
-              Text(user.username),
-              Text(user.nickname),
+              Container(
+                width: 60,
+                margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
+                decoration: BoxDecoration(
+                  color: Colors.amber,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(user.username,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'noto',
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text(user.nickname,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'noto',
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xff989898),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
-          TextButton(
+          OutlinedButton(
+            style: OutlinedButton.styleFrom(
+              // primary: Colors.blueGrey
+              // backgroundColor: Colors.blueGrey
+            ),
             onPressed: () {},
             child: Text('삭제')
           )
