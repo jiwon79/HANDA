@@ -15,8 +15,13 @@ class MyProfile extends StatelessWidget {
 
     return Container(
       width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.fromLTRB(10, 16, 13, 18),
-      height: 90,
+      padding: EdgeInsets.fromLTRB(10, 16, 13, 18),
+      height: 124,
+      decoration: BoxDecoration(
+          border: Border(
+              bottom: BorderSide(width: 1, color: Color(0xffededed))
+          )
+      ),
       child: Row(
         children: [
           Container(
@@ -44,7 +49,11 @@ class MyProfile extends StatelessWidget {
                       child: OutlinedButton(
                         onPressed: () {},
                           style: OutlinedButton.styleFrom(
-                            padding: EdgeInsets.all(0)
+                            padding: EdgeInsets.all(0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.0),
+                              side: BorderSide(color: Colors.red)
+                            )
                           ),
                         child: Text('프로필 편집',
                           style: TextStyle(
