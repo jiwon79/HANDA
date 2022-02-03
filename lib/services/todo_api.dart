@@ -13,7 +13,7 @@ class TodoApi {
     late Response response;
     late TodoListResponse todoListResponse;
     try {
-      response = await http.getRequest('/users/me/todos');
+      response = await http.getRequest(endPoint: '/users/me/todos');
       if (response.statusCode == 200) {
         todoListResponse = TodoListResponse.fromJson(response.data);
         response.data = todoListResponse;

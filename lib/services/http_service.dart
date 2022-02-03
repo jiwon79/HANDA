@@ -35,14 +35,17 @@ class HttpService {
     ));
   }
 
-  Future<Response> getRequest(String endPoint) async {
+  Future<Response> getRequest({
+    String endPoint = '',
+    Map<String, dynamic> parameters = const {},
+  }) async {
     final storage = FlutterSecureStorage();
     String? token = await storage.read(key: "token");
     _dio.options.headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
 
     Response response;
     try {
-      response = await _dio.get(endPoint);
+      response = await _dio.get(endPoint, queryParameters: parameters);
     } on DioError catch (e) {
       throw Exception(e);
     }

@@ -14,7 +14,8 @@ class UserApi {
     late User userDataResponse;
 
     try {
-      response = await http.getRequest('/users/me');
+      Map<String, bool> parameters = {'detail': true};
+      response = await http.getRequest(endPoint: '/users/me', parameters: parameters);
       if (response.statusCode == 200) {
         userDataResponse = User.fromJson(response.data);
         response.data = userDataResponse;
@@ -31,7 +32,7 @@ class UserApi {
     late UserList followingListResponse;
 
     try {
-      response = await http.getRequest('/users/me/followings');
+      response = await http.getRequest(endPoint: '/users/me/followings');
       if (response.statusCode == 200) {
         followingListResponse = UserList.fromJson(response.data);
         response.data = followingListResponse;
@@ -48,7 +49,7 @@ class UserApi {
     late UserList followerListResponse;
 
     try {
-      response = await http.getRequest('/users/me/followers');
+      response = await http.getRequest(endPoint: '/users/me/followers');
       if (response.statusCode == 200) {
         followerListResponse = UserList.fromJson(response.data);
         response.data = followerListResponse;
