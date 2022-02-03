@@ -10,7 +10,7 @@ class FollowerList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-        itemCount: Provider.of<UserData>(context).followerCount,
+        itemCount: Provider.of<UserData>(context).user.detail.num_followers,
         itemBuilder: (BuildContext context, int index) {
           return FollowItem(
             user: Provider.of<UserData>(context).followerList[index],
