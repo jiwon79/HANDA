@@ -5,11 +5,13 @@ import 'package:flutter_todo/services/user_api.dart';
 
 class UserData with ChangeNotifier {
   User _user = User(
-      username: '',
-      nickname: '',
-      is_verified: false,
-      registered_at: ''
+    username: '',
+    nickname: '',
+    is_verified: false,
+    registered_at: '',
+    detail: emptyUserDetail,
   );
+
   User get user => _user;
   List<User> _followingList = [];
   List<User> get followingList => _followingList;
