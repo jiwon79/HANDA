@@ -12,7 +12,10 @@ class FollowerList extends StatelessWidget {
       child: ListView.builder(
         itemCount: Provider.of<UserData>(context).followerCount,
         itemBuilder: (BuildContext context, int index) {
-          return FollowItem(user: Provider.of<UserData>(context).followerList[index]);
+          return FollowItem(
+            user: Provider.of<UserData>(context).followerList[index],
+            option: FollowOptions.follower,
+          );
         }
       )
     );
