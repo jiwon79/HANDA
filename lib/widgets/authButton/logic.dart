@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/widgets/common/alert_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -26,46 +27,19 @@ void authButtonLogic(BuildContext context, AuthAction action, data) {
       await Provider.of<UserData>(context, listen: false).getMyData();
       Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
     } else if (response.statusCode == 404) {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('로그인 오류'),
-              content: Text('아이디가 잘못되었습니다.'),
-              actions: [
-                TextButton(
-                  child: Text("확인"),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                )
-              ],
-            );
-          }
+      alertWidget(
+        context: context,
+        title: '로그인 오류',
+        content: '아이디가 잘못되었습니다.'
       );
     } else if (response.statusCode == 401) {
-      showDialog(
+      alertWidget(
           context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('로그인 오류'),
-              content: Text('비밀번호가 잘못되었습니다.'),
-              actions: [
-                TextButton(
-                  child: Text("확인"),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                )
-              ],
-            );
-          }
+          title: '로그인 오류',
+          content: '비밀번호가 잘못되었습니다.'
       );
     }
-
   }
-
-
 
   switch (action) {
     case AuthAction.landingLogin:
