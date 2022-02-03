@@ -43,4 +43,15 @@ class AuthApi {
       throw(Exception('UnExpected error!!!'));
     }
   }
+
+  Future<Response> checkAvailable(data) async {
+    late Response response;
+    try {
+      response = await http.postRequest('/auth/check-available', data);
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+      throw(Exception('UnExpected error!!!'));
+    }
+  }
 }
