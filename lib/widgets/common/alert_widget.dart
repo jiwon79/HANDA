@@ -20,7 +20,7 @@ void alertWidget({
           TextButton(
             child: Text("확인"),
             onPressed: () {
-              defaultOnPress(context);
+              onPress(context);
             },
           )
         ],
