@@ -17,11 +17,11 @@ class AuthApi {
 
       if (response.statusCode == 201) {
         registerResponse = RegisterResponse.fromJson(response.data);
-        return registerResponse;
+        response.data = registerResponse;
       } else {
         print("There is some problem status code not 201");
-        return response.statusCode;
       }
+      return response;
     } on DioError catch (e) {
       print(e.response);
       print(e.response!.statusCode);
