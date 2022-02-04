@@ -28,11 +28,18 @@ class UserData with ChangeNotifier {
 
   Future getMyData() async {
     Response<dynamic> userResponse =  await UserApi().getMyData();
-    Response<dynamic> followingListResponse =  await UserApi().getMyFollowingList();
-    Response<dynamic> followerListResponse =  await UserApi().getMyFollowerList();
-
     _user = userResponse.data;
+  }
+
+  Future getFollowings() async {
+    Response<dynamic> followingListResponse =  await UserApi().getMyFollowingList();
     _followingList = followingListResponse.data.userList;
+    return 'get followers';
+  }
+
+  Future getFollowers() async {
+    Response<dynamic> followerListResponse =  await UserApi().getMyFollowerList();
     _followerList = followerListResponse.data.userList;
+    return 'get followings';
   }
 }
