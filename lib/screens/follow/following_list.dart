@@ -8,16 +8,27 @@ class FollowingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-          itemCount: Provider.of<UserData>(context).user.detail.num_followings,
-          itemBuilder: (BuildContext context, int index) {
-            return FollowItem(
-              user: Provider.of<UserData>(context).followingList[index],
-              option: FollowOptions.following,
-            );
-          }
-      )
+    return FutureBuilder(
+      future: Provider.of<UserData>(context, listen: false).getFollowings(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData == false) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasError) {
+          return Text('Network error');
+        } else {
+          return ListView.builder(
+            itemCount: Provider.of<UserData>(context).user.detail.num_followings,
+            itemBuilder: (BuildContext context, int index) {
+              return FollowItem(
+                user: Provider.of<UserData>(context).followingList[index],
+                option: FollowOptions.following,
+              );
+            }
+          );
+        }
+      },
     );
   }
 }

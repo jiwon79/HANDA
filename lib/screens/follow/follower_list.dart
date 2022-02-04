@@ -17,7 +17,9 @@ class _FollowerListState extends State<FollowerList> {
       future: Provider.of<UserData>(context, listen: false).getFollowers(),
       builder: (context, snapshot) {
         if (snapshot.hasData == false) {
-          return CircularProgressIndicator();
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         } else if (snapshot.hasError) {
           return Text('Network Error');
         } else {
