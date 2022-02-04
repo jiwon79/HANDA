@@ -60,16 +60,57 @@ class FollowItem extends StatelessWidget {
               ),
             ],
           ),
-          OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              // primary: Colors.blueGrey
-              // backgroundColor: Colors.blueGrey
-            ),
-            onPressed: () {},
-            child: Text('삭제')
-          )
+          followButton(option),
         ],
       ),
     );
   }
 }
+
+Widget followButton(FollowOptions option) {
+  switch (option) {
+    case FollowOptions.follower:
+      return SizedBox(
+        height: 30,
+        width: 50,
+        child: OutlinedButton(
+            onPressed: () {},
+            child: Text('삭제',
+              style: followButtonTextStyle
+            ),
+          style: followButtonOutlinedStyle
+        ),
+      );
+    case FollowOptions.following:
+      return SizedBox(
+        height: 30,
+        width: 80,
+        child: OutlinedButton(
+            onPressed: () {},
+            child: Text('팔로잉',
+              style: followButtonTextStyle
+            ),
+          style: followButtonOutlinedStyle,
+        ),
+      );
+    default:
+      return Text('');
+  }
+}
+
+TextStyle followButtonTextStyle = TextStyle(
+  fontSize: 13,
+  fontFamily: 'noto',
+  fontWeight: FontWeight.w500,
+  color: Colors.black,
+);
+
+ButtonStyle followButtonOutlinedStyle = OutlinedButton.styleFrom(
+    padding: EdgeInsets.all(0),
+    shape: RoundedRectangleBorder(
+      side: BorderSide(
+        width: 1
+      ),
+      borderRadius: BorderRadius.all(Radius.circular(4))
+    ),
+);
