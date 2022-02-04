@@ -8,7 +8,8 @@ class TodoItem extends StatefulWidget {
         required this.isEditing,
         required this.checkboxCallback,
         required this.deleteCallback,
-        required this.editedCallback,
+        required this.editCallback,
+        required this.updateCallback,
       })
       : super(key: key);
 
@@ -17,7 +18,8 @@ class TodoItem extends StatefulWidget {
   final bool isEditing;
   final Function checkboxCallback;
   final Function deleteCallback;
-  final Function editedCallback;
+  final Function editCallback;
+  final Function updateCallback;
 
   @override
   _TodoItemState createState() => _TodoItemState();
@@ -41,7 +43,7 @@ class _TodoItemState extends State<TodoItem> {
                 autofocus: true,
                 controller: _taskController,
                 onSubmitted: (input) {
-                  widget.editedCallback(input);
+                  widget.updateCallback(input);
                   print(input);
                 },
                 decoration: InputDecoration(
@@ -66,7 +68,7 @@ class _TodoItemState extends State<TodoItem> {
                           TextButton(
                               onPressed: () {
                                 Navigator.pop(context);
-                                widget.editedCallback(widget.todoName);
+                                widget.editCallback();
                               },
                               child: Column(
                                 children: [

@@ -58,10 +58,9 @@ class TodoData with ChangeNotifier {
       'due_date': todo.dueDate,
       'is_done': !todo.isDone,
     };
-    Response response = await TodoApi().updateTodoRequest(todo.id, requestData);
-    print(response);
     todo.toggleDone();
     notifyListeners();
+    await TodoApi().updateTodoRequest(todo.id, requestData);
   }
 
   void updateTodoName(Todo todo, String updateName) async {
@@ -70,18 +69,15 @@ class TodoData with ChangeNotifier {
       'due_date': todo.dueDate,
       'is_done': todo.isDone,
     };
-    Response response = await TodoApi().updateTodoRequest(todo.id, requestData);
-    print(response);
     todo.updateName(updateName);
     todo.toggleEditing();
     notifyListeners();
+    await TodoApi().updateTodoRequest(todo.id, requestData);
   }
 
   void deleteTodo(Todo todo) async {
-    await TodoApi().deleteTodoRequest(todo.id);
-
     _todos.remove(todo);
     notifyListeners();
+    await TodoApi().deleteTodoRequest(todo.id);
   }
-
 }

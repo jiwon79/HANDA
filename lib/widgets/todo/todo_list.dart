@@ -26,7 +26,10 @@ class TodoList extends StatelessWidget {
               deleteCallback: () {
                 todoData.deleteTodo(todo);
               },
-              editedCallback: (String updateName) {
+              editCallback: () {
+                todo.toggleEditing();
+              },
+              updateCallback: (String updateName) {
                 todoData.updateTodoName(todo, updateName);
               }
             );
