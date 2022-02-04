@@ -60,4 +60,38 @@ class UserApi {
       throw(Exception('UnExpected error!!!'));
     }
   }
+
+  Future followRequest(data) async {
+    late Response response;
+    late User followResponse;
+
+    try {
+      response = await http.putRequest('/users/follow', data);
+      if (response.statusCode == 200) {
+        followResponse = User.fromJson(response.data);
+        response.data = followResponse;
+      }
+      return response;
+    } on DioError catch(e) {
+      print(e.response);
+      throw(Exception('UnExpected error!!!'));
+    }
+  }
+
+  Future unFollowRequest(data) async {
+    late Response response;
+    late User unFollowResponse;
+
+    try {
+      response = await http.putRequest('/users/unfollow', data);
+      if (response.statusCode == 200) {
+        unFollowResponse = User.fromJson(response.data);
+        response.data = unFollowResponse;
+      }
+      return response;
+    } on DioError catch(e) {
+      print(e.response);
+      throw(Exception('UnExpected error!!!'));
+    }
+  }
 }
