@@ -3,9 +3,14 @@ import 'package:flutter_todo/provider/user.dart';
 import 'package:flutter_todo/widgets/my_page/follow_item.dart';
 import 'package:provider/provider.dart';
 
-class FollowingList extends StatelessWidget {
+class FollowingList extends StatefulWidget {
   const FollowingList({Key? key}) : super(key: key);
 
+  @override
+  _FollowingListState createState() => _FollowingListState();
+}
+
+class _FollowingListState extends State<FollowingList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -19,7 +24,7 @@ class FollowingList extends StatelessWidget {
           return Text('Network error');
         } else {
           return ListView.builder(
-            itemCount: Provider.of<UserData>(context).user.detail.num_followings,
+            itemCount: Provider.of<UserData>(context).followingCount,
             itemBuilder: (BuildContext context, int index) {
               return FollowItem(
                 user: Provider.of<UserData>(context).followingList[index],

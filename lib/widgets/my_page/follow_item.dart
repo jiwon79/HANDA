@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/models/user_model.dart';
+import 'package:flutter_todo/widgets/my_page/alert_unfollow_widget.dart';
 
 enum FollowOptions {
   following,
@@ -60,21 +61,23 @@ class FollowItem extends StatelessWidget {
               ),
             ],
           ),
-          followButton(option),
+          followButton(context, option, user),
         ],
       ),
     );
   }
 }
 
-Widget followButton(FollowOptions option) {
+Widget followButton(BuildContext context, FollowOptions option, User user) {
   switch (option) {
     case FollowOptions.follower:
       return SizedBox(
         height: 30,
         width: 50,
         child: OutlinedButton(
-            onPressed: () {},
+            onPressed: () {
+              alertUnfollowWidget(context, user);
+            },
             child: Text('삭제',
               style: followButtonTextStyle
             ),

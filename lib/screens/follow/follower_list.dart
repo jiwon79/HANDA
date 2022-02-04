@@ -24,7 +24,7 @@ class _FollowerListState extends State<FollowerList> {
           return Text('Network Error');
         } else {
           return ListView.builder(
-            itemCount: Provider.of<UserData>(context).user.detail.num_followers,
+            itemCount: Provider.of<UserData>(context).followerCount,
             itemBuilder: (BuildContext context, int index) {
               return FollowItem(
                 user: Provider.of<UserData>(context).followerList[index],
