@@ -5,11 +5,20 @@ import 'package:flutter_todo/services/todo_api.dart';
 import 'package:intl/intl.dart';
 
 class TodoData with ChangeNotifier {
+  Map<String, List<Todo>> _todoMap= {};
   List<Todo> _todos = [];
+  Map<String, List<Todo>> get todoMap => _todoMap;
   List<Todo> get todos => _todos;
 
   Future getTodoList() async {
     Response<dynamic> response =  await TodoApi().getTodoData();
+    for (Todo todo in response.data.todoList) {
+      if (_todoMap[todo.dueDate] == null) {
+        _todoMap[todo.dueDate] = [todo];
+      } else {
+        _todoMap[todo.dueDate]!.add(todo);
+      }
+    }
     _todos = response.data.todoList;
   }
 
@@ -22,16 +31,12 @@ class TodoData with ChangeNotifier {
   }
 
   List<Todo> getTodosSelectedDay(DateTime date) {
-    List<Todo> todosSelectedDay = [];
     String dateFormat = DateFormat('yyyy-MM-dd').format(date);
-    print(dateFormat);
 
-    for(Todo todo in _todos) {
-      if (todo.dueDate == dateFormat) {
-        todosSelectedDay.add(todo);
-      }
+    if (_todoMap[dateFormat] == null) {
+      return [];
     }
-    return todosSelectedDay;
+    return _todoMap[dateFormat]!;
   }
 
   void addTodo(DateTime date) async {
