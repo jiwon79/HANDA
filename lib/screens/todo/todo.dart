@@ -16,20 +16,24 @@ class _TodoPageState extends State<TodoPage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Column(
-        children: [
-          Text('나의 To Do List'),
-          TodoCalendar(),
-          Consumer<TodoData>(builder: (context, todoData, child) {
-            return TextButton(
-              onPressed: () {
-                todoData.addTodo(context.read<CalendarData>().selectedDay);
-              },
-              child: Text('할일 추가'),
-            );
-          }),
-          TodoList(),
-        ],
+      child: Container(
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+        color: Color(0xffF8F8FA),
+        child: Column(
+          children: [
+            Text('나의 To Do List'),
+            TodoCalendar(),
+            Consumer<TodoData>(builder: (context, todoData, child) {
+              return TextButton(
+                onPressed: () {
+                  todoData.addTodo(context.read<CalendarData>().selectedDay);
+                },
+                child: Text('할일 추가'),
+              );
+            }),
+            TodoList(),
+          ],
+        ),
       ),
       onTap: () {
         FocusScope.of(context).unfocus();
