@@ -17,9 +17,19 @@ class _CalendarHeaderState extends State<CalendarHeader> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(DateFormat('yyyy년 MM월').format(context.watch<CalendarData>().selectedDay)),
-        Icon(Icons.health_and_safety),
+        Text(DateFormat('yyyy년 MM월').format(context.watch<CalendarData>().selectedDay),
+          style: TextStyle(
+            fontSize: 16,
+            fontFamily: 'noto',
+
+          ),
+        ),
+        Icon(Icons.favorite,
+          color: Colors.pink,
+          size: 16
+        ),
         Text('32'),
         Icon(Icons.check_box),
         Text('16'),

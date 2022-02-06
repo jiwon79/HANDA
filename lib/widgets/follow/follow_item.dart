@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/models/user_model.dart';
-import 'package:flutter_todo/widgets/my_page/alert_unfollow_widget.dart';
+import 'package:flutter_todo/widgets/follow/alert_unfollow_widget.dart';
 
 enum FollowOptions {
   following,

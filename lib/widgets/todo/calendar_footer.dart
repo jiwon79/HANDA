@@ -18,11 +18,7 @@ class CalendarFooter extends StatelessWidget {
           ),
         ),
         Text('50% 이하',
-          style: TextStyle(
-            fontSize: 12,
-            fontFamily: 'noto',
-            fontWeight: FontWeight.w500,
-          ),
+          style: footerTextStyle
         ),
         Container(
           width: 18,
@@ -34,11 +30,7 @@ class CalendarFooter extends StatelessWidget {
           ),
         ),
         Text('50% 이상',
-          style: TextStyle(
-            fontSize: 12,
-            fontFamily: 'noto',
-            fontWeight: FontWeight.w500,
-          ),
+          style: footerTextStyle
         ),
         Container(
           width: 18,
@@ -49,12 +41,8 @@ class CalendarFooter extends StatelessWidget {
               borderRadius: BorderRadius.circular(5)
           ),
         ),
-        Text('50% 완료',
-          style: TextStyle(
-            fontSize: 12,
-            fontFamily: 'noto',
-            fontWeight: FontWeight.w500,
-          ),
+        Text('완료',
+          style: footerTextStyle
         ),
         Container(
           width: 18,
@@ -66,13 +54,15 @@ class CalendarFooter extends StatelessWidget {
           ),
         ),
         Text('미완료',
-          style: TextStyle(
-            fontSize: 12,
-            fontFamily: 'noto',
-            fontWeight: FontWeight.w500,
-          ),
+          style: footerTextStyle,
         ),
       ],
     );
   }
 }
+
+TextStyle footerTextStyle = TextStyle(
+  fontSize: 12,
+  fontFamily: 'noto',
+  fontWeight: FontWeight.w500,
+);

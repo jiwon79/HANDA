@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/provider/user.dart';
-import 'package:flutter_todo/widgets/my_page/follow_item.dart';
+import 'package:flutter_todo/widgets/follow/follow_item.dart';
 import 'package:provider/provider.dart';
 
 class FollowerList extends StatefulWidget {
