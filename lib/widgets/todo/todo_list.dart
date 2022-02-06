@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/provider/calendar.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_todo/provider/calendar.dart';
 import 'package:flutter_todo/provider/todo.dart';
 import 'todo_item.dart';
 
@@ -17,9 +17,7 @@ class TodoList extends StatelessWidget {
           itemBuilder: (context, index) {
             final todo = selectedTodos[index];
             return TodoItem(
-              todoName: todo.name,
-              isChecked: todo.isDone,
-              isEditing: todo.isEditing,
+              todo: todo,
               checkboxCallback: (bool checkboxState) {
                 todoData.updateTodo(todo);
               },
