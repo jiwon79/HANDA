@@ -22,7 +22,16 @@ void alertTodoModal({
             width: 300,
             child: Column(
               children: [
-                Text(todoName),
+                Container(
+                  margin: EdgeInsets.only(bottom: 10),
+                  child: Text(todoName,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontFamily: 'noto',
+                      fontWeight: FontWeight.w700
+                    )
+                  ),
+                ),
                 Wrap(
                   direction: Axis.horizontal,
                   spacing: 10,
