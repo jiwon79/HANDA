@@ -34,15 +34,17 @@ class Calendar extends StatelessWidget {
       headerVisible: false,
       calendarBuilders: CalendarBuilders(
         dowBuilder: (context, day) {
-          if (day.weekday == DateTime.sunday) {
-            final text = DateFormat.E().format(day);
-            return Center(
-              child: Text(
-                text,
-                style: TextStyle(color: Colors.red),
-              ),
-            );
-          }
+          final text = DateFormat.E().format(day);
+          return Center(
+            child: Text(text,
+              style: TextStyle(
+                fontSize: 12,
+                fontFamily: 'noto',
+                fontWeight: FontWeight.w700,
+                color: dayColor(day),
+              )
+            ),
+          );
         },
         defaultBuilder: (context, day, focusedDay) {
           return Container(
@@ -65,5 +67,16 @@ class Calendar extends StatelessWidget {
         // },
       ),
     );
+  }
+}
+
+Color dayColor(DateTime day) {
+  switch (day.weekday) {
+    case DateTime.saturday:
+      return Color(0xff232D88);
+    case DateTime.sunday:
+      return Color(0xffc33232);
+    default:
+      return Colors.black;
   }
 }
