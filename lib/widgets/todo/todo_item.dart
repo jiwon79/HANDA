@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/models/todo_model.dart';
+import 'package:flutter_todo/widgets/todo/alert_todo_modal.dart';
 
 class TodoItem extends StatefulWidget {
   const TodoItem(
@@ -59,43 +60,11 @@ class _TodoItemState extends State<TodoItem> {
           : Text(widget.todo.name),
           IconButton(
               onPressed: (){
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text(widget.todo.name),
-                        content: Wrap(
-                          direction: Axis.horizontal,
-                          spacing: 10,
-                          runSpacing: 40,
-                          children: <Widget>[
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                  widget.editCallback();
-                                },
-                                child: Column(
-                                  children: [
-                                    Icon(Icons.add),
-                                    Text('To Do 수정하기'),
-                                  ],
-                                )
-                            ),
-                            TextButton(
-                                onPressed: () async {
-                                  await widget.deleteCallback();
-                                  Navigator.pop(context);
-                                },
-                                child: Column(
-                                  children: [
-                                    Icon(Icons.clear),
-                                    Text('To Do 삭제하기')
-                                  ],
-                                ))
-                          ],
-                        ),
-                      );
-                    }
+                alertTodoModal(
+                  context: context,
+                  todoName: widget.todo.name,
+                  editCallback: widget.editCallback,
+                  deleteCallback: widget.deleteCallback
                 );
               },
               icon: Icon(Icons.more_horiz)
