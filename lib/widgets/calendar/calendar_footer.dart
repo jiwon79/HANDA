@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/widgets/calendar/footer_icon.dart';
 
 class CalendarFooter extends StatelessWidget {
   const CalendarFooter({Key? key}) : super(key: key);
@@ -8,54 +9,20 @@ class CalendarFooter extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Container(
-          width: 18,
-          height: 18,
-          margin: EdgeInsets.fromLTRB(13, 0, 3, 0),
-          decoration: BoxDecoration(
-            color: Color(0xffDFF0FC),
-            borderRadius: BorderRadius.circular(5)
-          ),
+        FooterIcon(color: Color(0xffDFF0FC)),
+        Text('50% 이하', style: footerTextStyle),
+        FooterIcon(color: Color(0xffbde4ff)),
+        Text('50% 이상', style: footerTextStyle),
+        FooterIcon(
+          color: Color(0xff87C8F6),
+          child: Icon(Icons.check,
+            size: 15,
+            color: Colors.white,
+          )
         ),
-        Text('50% 이하',
-          style: footerTextStyle
-        ),
-        Container(
-          width: 18,
-          height: 18,
-          margin: EdgeInsets.fromLTRB(13, 0, 3, 0),
-          decoration: BoxDecoration(
-              color: Color(0xffbde4ff),
-              borderRadius: BorderRadius.circular(5)
-          ),
-        ),
-        Text('50% 이상',
-          style: footerTextStyle
-        ),
-        Container(
-          width: 18,
-          height: 18,
-          margin: EdgeInsets.fromLTRB(13, 0, 3, 0),
-          decoration: BoxDecoration(
-              color: Color(0xff87C8F6),
-              borderRadius: BorderRadius.circular(5)
-          ),
-        ),
-        Text('완료',
-          style: footerTextStyle
-        ),
-        Container(
-          width: 18,
-          height: 18,
-          margin: EdgeInsets.fromLTRB(13, 0, 3, 0),
-          decoration: BoxDecoration(
-              color: Color(0xffFAAEAE),
-              borderRadius: BorderRadius.circular(5)
-          ),
-        ),
-        Text('미완료',
-          style: footerTextStyle,
-        ),
+        Text('완료', style: footerTextStyle),
+        FooterIcon(color: Color(0xffFAAEAE),),
+        Text('미완료', style: footerTextStyle,),
       ],
     );
   }

@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 class TodoData with ChangeNotifier {
   Map<String, List<Todo>> _todoMap= {};
   List<Todo> _todos = [];
+
   Map<String, List<Todo>> get todoMap => _todoMap;
   List<Todo> get todos => _todos;
 
@@ -38,6 +39,8 @@ class TodoData with ChangeNotifier {
     }
     return _todoMap[dateFormat]!;
   }
+
+
 
   void addTodo(DateTime date) async {
     var requestData = {
