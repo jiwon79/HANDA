@@ -21,9 +21,9 @@ class CalendarData with ChangeNotifier {
   }
 
   void changeCalendarFormat(format) {
-    if (format == 'month') _calendarFormat = CalendarFormat.month;
-    if (format == 'two weeks') _calendarFormat = CalendarFormat.twoWeeks;
-    if (format == 'week') _calendarFormat = CalendarFormat.week;
+    if (format == '월') _calendarFormat = CalendarFormat.month;
+    if (format == '2주') _calendarFormat = CalendarFormat.twoWeeks;
+    if (format == '주') _calendarFormat = CalendarFormat.week;
     notifyListeners();
   }
 }

@@ -11,28 +11,61 @@ class CalendarHeader extends StatefulWidget {
 }
 
 class _CalendarHeaderState extends State<CalendarHeader> {
-  final List<String> _valueList = ['month', 'two weeks', 'week'];
-  String _selectedValue = 'week';
+  final List<String> _valueList = ['월', '2주', '주'];
+  String _selectedValue = '주';
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(DateFormat('yyyy년 MM월').format(context.watch<CalendarData>().selectedDay),
-          style: TextStyle(
-            fontSize: 16,
-            fontFamily: 'noto',
-
-          ),
+        Row(
+          children: [
+            Text(DateFormat('yyyy년 MM월').format(context.watch<CalendarData>().selectedDay),
+              style: TextStyle(
+                fontSize: 14,
+                fontFamily: 'noto',
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
+              child: Row(
+                children: [
+                  Icon(Icons.favorite,
+                    color: Colors.pink,
+                    size: 14
+                  ),
+                  Text('32',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'noto',
+                      fontWeight: FontWeight.w700
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
+              child: Row(
+                children: [
+                  Icon(Icons.check_box,
+                    size: 14,
+                  ),
+                  Text('16',
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'noto',
+                        fontWeight: FontWeight.w700
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
-        Icon(Icons.favorite,
-          color: Colors.pink,
-          size: 16
-        ),
-        Text('32'),
-        Icon(Icons.check_box),
-        Text('16'),
         DropdownButton<String>(
           value: _selectedValue,
           items: _valueList.map((value) {
